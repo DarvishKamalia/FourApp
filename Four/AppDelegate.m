@@ -7,10 +7,14 @@
 //
 
 #import "AppDelegate.h"
+#import <Parse/Parse.h>
+
 
 @interface AppDelegate ()
 
 @end
+
+
 
 @implementation AppDelegate
 
@@ -19,7 +23,11 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    // Override point for customization after application launch.
+    //Parse
+    [Parse setApplicationId:@"yVTERCJgFuktChSHTynuK0ZUD3MOqgu3Fizeo4Ze"
+                  clientKey:@"XC7mOG46DNCya4HHNSQ7KOTkK5UL0xF0QlSFFTUi"];
+    
+    //LoginVC
     UIStoryboard *login = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
     UIViewController *loginVC = [login instantiateInitialViewController];
     self.window.rootViewController = loginVC;
