@@ -7,8 +7,9 @@
 //
 
 #import "RequestARideViewController.h"
+#import "RideAnnotation.h"
 
-@interface RequestARideViewController () <UISearchBarDelegate>
+@interface RequestARideViewController () <UISearchBarDelegate, MKMapViewDelegate>
 
 // IBOutlets
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -16,6 +17,9 @@
 @property (strong, nonatomic) UISearchBar* searchBar;
 
 @property (strong, nonatomic) CLGeocoder* geocoder;
+
+// Store all the annotations which we initially request, when the view loads
+@property (strong, nonatomic) NSMutableArray<RideAnnotation *>* initialAnnotations;
 
 @end
 
@@ -35,8 +39,15 @@
     
     
     // When the view initially loads, then request for a bunch of rides
-    // starting near you
+    // starting near you. Pass all of these rides object, to the MKAnnotation
     
+    
+}
+
+#pragma mark - Map View Delegate
+
+-(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
     
 }
 
@@ -50,6 +61,8 @@
         // for each placemark, find the destination rides
         for (CLPlacemark* placemark in placemarks) {
             CLLocationCoordinate2D coordinate = placemark.location.coordinate;
+            
+            
         }
     }];
 }
