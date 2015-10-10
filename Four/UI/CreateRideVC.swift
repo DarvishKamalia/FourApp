@@ -68,7 +68,7 @@ class CreateRideViewController: UIViewController, UITextFieldDelegate {
                             
                             print ("web")
                             
-                            ParseManager.sharedManager().createRideWithStart(startMark.location, destination: endMark.location, price: 2.5, seats: 20, block: {
+                            DataManager.sharedManager().createRideWithStart(startMark.location, destination: endMark.location, departure: NSDate() ,price: 2.5, seats: 20, block: {
                                 
                                 (error) in
                                 
