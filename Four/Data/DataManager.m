@@ -41,20 +41,29 @@
                       price:(float)price seats:(int)seats
                       block:(void (^)(NSError *error))block
 {
+    //new ride
+    PFObject *newRide = [PFObject objectWithClassName:@"Ride"];
+
+    //geo locations
     PFGeoPoint *startGP = [PFGeoPoint geoPointWithLocation:start];
     PFGeoPoint *destGP  = [PFGeoPoint geoPointWithLocation:destination];
     
-    PFObject *startLoc = [PFObject objectWithClassName:@"Location"];
-    startLoc[@"point"] = startGP;
-    PFObject *destLoc  = [PFObject objectWithClassName:@"Location"];
-    destLoc[@"point"]  = destGP;
+    PFObject *startLoc = [PFObject objectWithClassName:@"Start"];
+    startLoc[@"geopoint"] = startGP;
+    startLoc[@"ride"] = newRide;
+    PFObject *destLoc  = [PFObject objectWithClassName:@"Destination"];
+    destLoc[@"geopoint"] = destGP;
+    destLoc[@"ride"] = newRide;
     
+    
+    //other fields
     PFUser *driver = [PFUser currentUser];
     
     NSNumber *priceObj = [NSNumber numberWithFloat:price];
     NSNumber *seatsObj = [NSNumber numberWithInt:seats];
     
-    PFObject *newRide = [PFObject objectWithClassName:@"Ride"];
+    
+    //configure rides
     newRide[@"start"] = startLoc;
     newRide[@"destination"] = destLoc;
     newRide[@"departure"] = departure;
@@ -63,6 +72,7 @@
     newRide[@"price"] = priceObj;
     newRide[@"seatsLeft"] = seatsObj;
     
+    //attempt saving ride
     [newRide saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
     {
         if (!error)
@@ -76,4 +86,79 @@
     }];
 }
 
+
+/**
+ *
+ */
+- (void)getRidesStartingNear:(CLLocation *)location within:(double)miles
+                       block:(void (^)(NSArray *rides, NSError *error))block
+{
+    PFGeoPoint *gp = [PFGeoPoint geoPointWithLocation:location];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Start"];
+    [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
+    [query includeKey:@"ride"];
+    query.limit = 10;
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+    {
+        if (error)
+        {
+            //error handling
+            block(nil, error);
+            return;
+        }
+        
+        //success
+        NSMutableArray *rides = [NSMutableArray array];
+        for (PFObject *start in objects)
+            [rides addObject:start[@"ride"]];
+        
+        block(rides, nil);
+    }];
+}
+
+
+/**
+ *
+ */
+- (void)getRidesEndingNear:(CLLocation *)location within:(double)miles
+                       block:(void (^)(NSArray *rides, NSError *error))block
+{
+    PFGeoPoint *gp = [PFGeoPoint geoPointWithLocation:location];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Destination"];
+    [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
+    [query includeKey:@"ride"];
+    query.limit = 10;
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
+     {
+         if (error)
+         {
+                 //error handling
+             block(nil, error);
+             return;
+         }
+         
+             //success
+         NSMutableArray *rides = [NSMutableArray array];
+         for (PFObject *start in objects)
+             [rides addObject:start[@"ride"]];
+         
+         block(rides, nil);
+     }];
+}
+
+
+
 @end
+
+
+
+
+
+
+
+
+
