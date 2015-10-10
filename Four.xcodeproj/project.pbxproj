@@ -12,7 +12,6 @@
 		1FD8C9181BC970EE006842BE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8C9171BC970EE006842BE /* MapKit.framework */; };
 		1FD8C91C1BC978CC006842BE /* RideAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD8C91B1BC978CC006842BE /* RideAnnotation.m */; settings = {ASSET_TAGS = (); }; };
 		1FD8C91E1BC980FA006842BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FD8C91D1BC980FA006842BE /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
-		4DFB03F813C49E2FD9E5C301 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFC1A5B185ADE3B75588420 /* libPods.a */; };
 		95F6E0551BC93D35008ADCDA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E0541BC93D35008ADCDA /* AppDelegate.m */; };
 		95F6E0571BC93D35008ADCDA /* Four-Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = 95F6E0561BC93D35008ADCDA /* Four-Prefix.pch */; };
 		95F6E0591BC93D35008ADCDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95F6E0581BC93D35008ADCDA /* Assets.xcassets */; };
@@ -26,6 +25,7 @@
 		95F6E0981BC95038008ADCDA /* BMTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E0951BC95038008ADCDA /* BMTextField.m */; settings = {ASSET_TAGS = (); }; };
 		95F6E0991BC95038008ADCDA /* UIView+Border.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E0971BC95038008ADCDA /* UIView+Border.m */; settings = {ASSET_TAGS = (); }; };
 		95F6E09C1BC9518E008ADCDA /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E09B1BC9518E008ADCDA /* LoginVC.m */; settings = {ASSET_TAGS = (); }; };
+		BD656FA23EEA8C1A4EC1DAEE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 531BF9327790788BAF62D717 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +53,7 @@
 		1FD8C91A1BC978CC006842BE /* RideAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RideAnnotation.h; path = "Request A Ride/RideAnnotation.h"; sourceTree = "<group>"; };
 		1FD8C91B1BC978CC006842BE /* RideAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RideAnnotation.m; path = "Request A Ride/RideAnnotation.m"; sourceTree = "<group>"; };
 		1FD8C91D1BC980FA006842BE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		5BFC1A5B185ADE3B75588420 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		531BF9327790788BAF62D717 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		95F6E04D1BC93D35008ADCDA /* Four.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Four.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95F6E0531BC93D35008ADCDA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		95F6E0541BC93D35008ADCDA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FD8C9181BC970EE006842BE /* MapKit.framework in Frameworks */,
-				4DFB03F813C49E2FD9E5C301 /* libPods.a in Frameworks */,
+				BD656FA23EEA8C1A4EC1DAEE /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,7 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				1FD8C9171BC970EE006842BE /* MapKit.framework */,
-				5BFC1A5B185ADE3B75588420 /* libPods.a */,
+				531BF9327790788BAF62D717 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
