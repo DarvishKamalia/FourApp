@@ -9,29 +9,27 @@
 import UIKit
 import Alamofire
 import CoreLocation
+import SwiftyJSON
 
 let uberServerToken = "HsamnrlCAg6WYkv4t5oEcMalWaTlnUmFtGvT-BV6"
 let uberAPIURL = "https://sandbox-api.uber.com/v1/"
 
 
-class CreateRideViewController: UIViewController, UITextFieldDelegate {
+class CreateRideVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var startAddressTextField: UITextField!
     @IBOutlet weak var destinationAddressTextField: UITextField!
     @IBOutlet weak var uberEstimateTextLabel: UILabel!
     @IBOutlet weak var pricePerSeatTextField: UITextField!
     
-    @IBOutlet weak var createRideButton: UIButton!
-    
     
     @IBAction func createRideButtonPressed(sender: AnyObject) {
         
-
-
-    
         
         
     }
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -66,15 +64,8 @@ class CreateRideViewController: UIViewController, UITextFieldDelegate {
                         
                         if let endMark = endMarks?.first {
                             
-                            print ("web")
                             
-                            DataManager.sharedManager().createRideWithStart(startMark.location, destination: endMark.location, departure: NSDate() ,price: 2.5, seats: 20, block: {
-                                
-                                (error) in
-                                
-                                print ("done")
-                        
-                            })
+                
                             
                             Alamofire.request(Method.GET, uberAPIURL + "estimates/price", parameters: [
                             
@@ -88,8 +79,16 @@ class CreateRideViewController: UIViewController, UITextFieldDelegate {
                                     
                                     (response) in
                                     
-                                    print (response)
-                                    
+                                    if let value = response.result.value {
+                                        
+                                        let json = JSON(value)
+                                        print (json)
+                                        let estimate = json["prices"][0]["estimate"].string
+                                        spinner.stopAnimating()
+                                        self.uberEstimateTextLabel.text = estimate
+                                        
+                                        
+                                    }
                                     
                                     
                                 }
