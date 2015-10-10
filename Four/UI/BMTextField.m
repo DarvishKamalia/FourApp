@@ -10,23 +10,6 @@
 
 
 @implementation BMTextField
-#pragma mark Init
-/**
- * @method initWithCoder
- *
- * Init method used by storyboard to create objects
- */
-- (instancetype)initWithCoder:(NSCoder *)aDecoder
-{
-    if (self = [super initWithCoder:aDecoder])
-    {
-        
-    }
-    return self;
-}
-
-
-
 #pragma mark - Accessors
 /**
  * @method setPlaceholderColor

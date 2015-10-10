@@ -5,6 +5,14 @@
 
 @implementation UIView (Border)
 #pragma mark All Borders
+- (void)setBorderWidth:(CGFloat)thickness color:(UIColor*)color
+{
+    CALayer * l = [self layer];
+//    [l setMasksToBounds:YES];
+    [l setBorderWidth:thickness];
+    [l setBorderColor:[color CGColor]];
+}
+
 /**
  * @method borderWidth
  *
