@@ -16,11 +16,14 @@
 @property (nonatomic, strong) IBOutlet UIView *view;
 
 @property (nonatomic, strong) IBOutlet UIView *toolbar;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *toolbarWidth;
+
 @property (nonatomic, strong) IBOutlet UIView *loginTabContainer;
 @property (nonatomic, strong) IBOutlet UIButton *loginTab;
 @property (nonatomic, strong) IBOutlet UIView *signupTabContainer;
 @property (nonatomic, strong) IBOutlet UIButton *signupTab;
-@property (nonatomic, strong) UIView *underline;
+@property (nonatomic, strong) IBOutlet UIView *underline;
+@property (nonatomic, strong) IBOutlet NSLayoutConstraint *underlineOffset;
 
 @property (nonatomic, strong) IBOutlet UIView *loginBox;
 @property (nonatomic, strong) IBOutlet BMTextField *loginUsernameField;
@@ -50,11 +53,12 @@
     {
         [[NSBundle mainBundle] loadNibNamed:@"BMLoginWidget" owner:self options:nil];
         [self addSubview:self.view];
+        self.view.clipsToBounds = YES;
         
         //vars
         initialSetup = YES;
         loginSelected = NO;
-        faintWhite = [UIColor colorWithWhite:1.0 alpha:0.3];
+        faintWhite = [UIColor colorWithWhite:1.0 alpha:0.5];
         solidWhite = [UIColor whiteColor];
         
         //clear test colors
@@ -86,18 +90,12 @@
  */
 - (void)layoutSubviews
 {
-    [super layoutSubviews];
+    self.toolbarWidth.constant = self.view.frame.size.width;
+    [self layoutIfNeeded];
 
-    if (initialSetup)
-    {
-        initialSetup = NO;
-        
-        CGFloat width = 0.8;
-        CGRect toolbarFrame = self.toolbar.frame;
-        CGRect loginTabFrame = self.loginTab.frame;
-        self.underline.frame = (CGRect){loginTabFrame.origin.x, toolbarFrame.size.height - width,
-                                        loginTabFrame.size.width, width};
-    }
+    NSLog(@"screen width: %f, view width: %f, tab width: %f",
+          [UIScreen mainScreen].bounds.size.width,
+          CGRectGetWidth(self.view.frame), CGRectGetWidth(self.loginTabContainer.frame));
 }
 
 /**
@@ -133,13 +131,10 @@
     
     //switch
     self.loginBoxOffset.constant = 0;
+    self.underlineOffset.constant = 0;
     [UIView animateWithDuration:0.2
      animations:^
      {
-         CGRect frame = self.underline.frame;
-         frame.origin.x = CGRectGetMinX(self.loginTab.frame);
-         self.underline.frame = frame;
-     
          [self.view layoutIfNeeded];
      }
      completion:^(BOOL finished)
@@ -163,15 +158,11 @@
     [self.signupTab setTitleColor:solidWhite forState:UIControlStateNormal];
     
     //switch
-    self.loginBoxOffset.constant = -self.frame.size.width;
+    self.loginBoxOffset.constant = -self.loginBox.frame.size.width;
+    self.underlineOffset.constant = self.loginTabContainer.frame.size.width;
     [UIView animateWithDuration:0.2
      animations:^
      {
-         CGRect frame = self.underline.frame;
-         frame.origin.x = CGRectGetWidth(self.loginTabContainer.frame);
-         frame.origin.x += CGRectGetMidX(self.signupTab.frame) - CGRectGetWidth(frame)/2;
-         self.underline.frame = frame;
-     
          [self.view layoutIfNeeded];
      
      }

@@ -21,6 +21,7 @@ IB_DESIGNABLE
 
 @property (nonatomic) IBInspectable CGFloat borderWidth;
 @property (nonatomic) IBInspectable UIColor *borderColor;
+- (void)setBorderWidth:(CGFloat)thickness color:(UIColor*)color;
 
 @property (nonatomic, strong, readonly) UIView *rightBorder;
 @property (nonatomic) IBInspectable CGFloat rightBorderWidth;

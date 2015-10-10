@@ -20,7 +20,6 @@
 		95F6E0721BC93D35008ADCDA /* FourUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E0711BC93D35008ADCDA /* FourUITests.m */; };
 		95F6E0891BC949B7008ADCDA /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95F6E0881BC949B7008ADCDA /* Login.storyboard */; settings = {ASSET_TAGS = (); }; };
 		95F6E08B1BC94CE3008ADCDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E08A1BC94CE3008ADCDA /* main.m */; settings = {ASSET_TAGS = (); }; };
-		95F6E08D1BC94CE7008ADCDA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95F6E08C1BC94CE7008ADCDA /* Info.plist */; settings = {ASSET_TAGS = (); }; };
 		95F6E0911BC94FB0008ADCDA /* BMLoginWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E08F1BC94FB0008ADCDA /* BMLoginWidget.m */; settings = {ASSET_TAGS = (); }; };
 		95F6E0921BC94FB0008ADCDA /* BMLoginWidget.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F6E0901BC94FB0008ADCDA /* BMLoginWidget.xib */; settings = {ASSET_TAGS = (); }; };
 		95F6E0981BC95038008ADCDA /* BMTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E0951BC95038008ADCDA /* BMTextField.m */; settings = {ASSET_TAGS = (); }; };
@@ -343,7 +342,6 @@
 				95F6E0591BC93D35008ADCDA /* Assets.xcassets in Resources */,
 				95F6E0921BC94FB0008ADCDA /* BMLoginWidget.xib in Resources */,
 				95F6E0891BC949B7008ADCDA /* Login.storyboard in Resources */,
-				95F6E08D1BC94CE7008ADCDA /* Info.plist in Resources */,
 				95F6E0571BC93D35008ADCDA /* Four-Prefix.pch in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
