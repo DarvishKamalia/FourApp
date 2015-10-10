@@ -14,7 +14,7 @@
 		1FD8C91E1BC980FA006842BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FD8C91D1BC980FA006842BE /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
 		1FD8C9241BC9B14B006842BE /* PopUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD8C9231BC9B14B006842BE /* PopUpViewController.m */; settings = {ASSET_TAGS = (); }; };
 		7C322E1F1BC9898500EBDAB6 /* CreateRide.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C322E1D1BC9898500EBDAB6 /* CreateRide.storyboard */; settings = {ASSET_TAGS = (); }; };
-		7C322E201BC9898500EBDAB6 /* CreateRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C322E1E1BC9898500EBDAB6 /* CreateRideViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		7C322E201BC9898500EBDAB6 /* CreateRideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C322E1E1BC9898500EBDAB6 /* CreateRideVC.swift */; settings = {ASSET_TAGS = (); }; };
 		95F6E0551BC93D35008ADCDA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E0541BC93D35008ADCDA /* AppDelegate.m */; };
 		95F6E0571BC93D35008ADCDA /* Four-Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = 95F6E0561BC93D35008ADCDA /* Four-Prefix.pch */; };
 		95F6E0591BC93D35008ADCDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95F6E0581BC93D35008ADCDA /* Assets.xcassets */; };
@@ -28,6 +28,7 @@
 		95F6E0981BC95038008ADCDA /* BMTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E0951BC95038008ADCDA /* BMTextField.m */; settings = {ASSET_TAGS = (); }; };
 		95F6E0991BC95038008ADCDA /* UIView+Border.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E0971BC95038008ADCDA /* UIView+Border.m */; settings = {ASSET_TAGS = (); }; };
 		95F6E09C1BC9518E008ADCDA /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E09B1BC9518E008ADCDA /* LoginVC.m */; settings = {ASSET_TAGS = (); }; };
+		95F6E0A01BC99F12008ADCDA /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E09F1BC99F12008ADCDA /* DataManager.m */; settings = {ASSET_TAGS = (); }; };
 		BD656FA23EEA8C1A4EC1DAEE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 531BF9327790788BAF62D717 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +62,7 @@
 		531BF9327790788BAF62D717 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C322E1C1BC9898400EBDAB6 /* Four-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Four-Bridging-Header.h"; sourceTree = "<group>"; };
 		7C322E1D1BC9898500EBDAB6 /* CreateRide.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateRide.storyboard; sourceTree = "<group>"; };
-		7C322E1E1BC9898500EBDAB6 /* CreateRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRideViewController.swift; sourceTree = "<group>"; };
+		7C322E1E1BC9898500EBDAB6 /* CreateRideVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRideVC.swift; sourceTree = "<group>"; };
 		95F6E04D1BC93D35008ADCDA /* Four.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Four.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95F6E0531BC93D35008ADCDA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		95F6E0541BC93D35008ADCDA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -86,6 +87,8 @@
 		95F6E0971BC95038008ADCDA /* UIView+Border.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Border.m"; sourceTree = "<group>"; };
 		95F6E09A1BC9518E008ADCDA /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		95F6E09B1BC9518E008ADCDA /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		95F6E09E1BC99F12008ADCDA /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		95F6E09F1BC99F12008ADCDA /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
 		C4E7364CB2FF34834FB90989 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E452AC41B5CC92AB1310644E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -131,6 +134,16 @@
 			name = "Request A Ride";
 			sourceTree = "<group>";
 		};
+		7C16EC2E1BC99D0600C3D710 /* CreateRide */ = {
+			isa = PBXGroup;
+			children = (
+				7C322E1E1BC9898500EBDAB6 /* CreateRideVC.swift */,
+				7C322E1D1BC9898500EBDAB6 /* CreateRide.storyboard */,
+			);
+			name = CreateRide;
+			path = UI;
+			sourceTree = "<group>";
+		};
 		95F6E0441BC93D35008ADCDA = {
 			isa = PBXGroup;
 			children = (
@@ -160,7 +173,9 @@
 				95F6E0531BC93D35008ADCDA /* AppDelegate.h */,
 				95F6E0541BC93D35008ADCDA /* AppDelegate.m */,
 				95F6E0931BC95038008ADCDA /* UI */,
+				95F6E09D1BC99EFF008ADCDA /* Data */,
 				95F6E0871BC949B7008ADCDA /* Login */,
+				7C16EC2E1BC99D0600C3D710 /* CreateRide */,
 				1FD8C9111BC96F66006842BE /* Request A Ride */,
 				95F6E0501BC93D35008ADCDA /* Supporting Files */,
 				95F6E05A1BC93D35008ADCDA /* LaunchScreen.storyboard */,
@@ -217,11 +232,18 @@
 				95F6E0951BC95038008ADCDA /* BMTextField.m */,
 				95F6E0961BC95038008ADCDA /* UIView+Border.h */,
 				95F6E0971BC95038008ADCDA /* UIView+Border.m */,
-				7C322E1D1BC9898500EBDAB6 /* CreateRide.storyboard */,
-				7C322E1E1BC9898500EBDAB6 /* CreateRideViewController.swift */,
 				7C322E1C1BC9898400EBDAB6 /* Four-Bridging-Header.h */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		95F6E09D1BC99EFF008ADCDA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				95F6E09E1BC99F12008ADCDA /* DataManager.h */,
+				95F6E09F1BC99F12008ADCDA /* DataManager.m */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		9AD977B6D09F69A9BDF7D319 /* Pods */ = {
@@ -439,11 +461,15 @@
 				1FD8C91C1BC978CC006842BE /* RideAnnotation.m in Sources */,
 				1FD8C9241BC9B14B006842BE /* PopUpViewController.m in Sources */,
 				7C322E201BC9898500EBDAB6 /* CreateRideViewController.swift in Sources */,
+
+				7C322E201BC9898500EBDAB6 /* CreateRideVC.swift in Sources */,
+
 				95F6E09C1BC9518E008ADCDA /* LoginVC.m in Sources */,
 				95F6E0911BC94FB0008ADCDA /* BMLoginWidget.m in Sources */,
 				1FD8C9161BC97006006842BE /* RequestARideViewController.m in Sources */,
 				95F6E08B1BC94CE3008ADCDA /* main.m in Sources */,
 				95F6E0551BC93D35008ADCDA /* AppDelegate.m in Sources */,
+				95F6E0A01BC99F12008ADCDA /* DataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
