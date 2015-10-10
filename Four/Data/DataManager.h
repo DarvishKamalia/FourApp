@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
-@interface ParseManager : NSObject
+@interface DataManager : NSObject
 
 + (instancetype)sharedManager;
 
