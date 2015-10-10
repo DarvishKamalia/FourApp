@@ -28,9 +28,10 @@
                   clientKey:@"XC7mOG46DNCya4HHNSQ7KOTkK5UL0xF0QlSFFTUi"];
     
     //LoginVC
-    UIStoryboard *login = [UIStoryboard storyboardWithName:@"Login" bundle:nil];
-    UIViewController *loginVC = [login instantiateInitialViewController];
-    self.window.rootViewController = loginVC;
+    NSString *sbname = [PFUser currentUser] ? @"Main" : @"Login";
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:sbname bundle:nil];
+    UIViewController *initVC = [sb instantiateInitialViewController];
+    self.window.rootViewController = initVC;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
