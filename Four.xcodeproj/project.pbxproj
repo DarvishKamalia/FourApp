@@ -17,6 +17,11 @@
 		95F6E0891BC949B7008ADCDA /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95F6E0881BC949B7008ADCDA /* Login.storyboard */; settings = {ASSET_TAGS = (); }; };
 		95F6E08B1BC94CE3008ADCDA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E08A1BC94CE3008ADCDA /* main.m */; settings = {ASSET_TAGS = (); }; };
 		95F6E08D1BC94CE7008ADCDA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 95F6E08C1BC94CE7008ADCDA /* Info.plist */; settings = {ASSET_TAGS = (); }; };
+		95F6E0911BC94FB0008ADCDA /* BMLoginWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E08F1BC94FB0008ADCDA /* BMLoginWidget.m */; settings = {ASSET_TAGS = (); }; };
+		95F6E0921BC94FB0008ADCDA /* BMLoginWidget.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95F6E0901BC94FB0008ADCDA /* BMLoginWidget.xib */; settings = {ASSET_TAGS = (); }; };
+		95F6E0981BC95038008ADCDA /* BMTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E0951BC95038008ADCDA /* BMTextField.m */; settings = {ASSET_TAGS = (); }; };
+		95F6E0991BC95038008ADCDA /* UIView+Border.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E0971BC95038008ADCDA /* UIView+Border.m */; settings = {ASSET_TAGS = (); }; };
+		95F6E09C1BC9518E008ADCDA /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E09B1BC9518E008ADCDA /* LoginVC.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +58,15 @@
 		95F6E0881BC949B7008ADCDA /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		95F6E08A1BC94CE3008ADCDA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		95F6E08C1BC94CE7008ADCDA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		95F6E08E1BC94FB0008ADCDA /* BMLoginWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMLoginWidget.h; sourceTree = "<group>"; };
+		95F6E08F1BC94FB0008ADCDA /* BMLoginWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMLoginWidget.m; sourceTree = "<group>"; };
+		95F6E0901BC94FB0008ADCDA /* BMLoginWidget.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BMLoginWidget.xib; sourceTree = "<group>"; };
+		95F6E0941BC95038008ADCDA /* BMTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMTextField.h; sourceTree = "<group>"; };
+		95F6E0951BC95038008ADCDA /* BMTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMTextField.m; sourceTree = "<group>"; };
+		95F6E0961BC95038008ADCDA /* UIView+Border.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Border.h"; sourceTree = "<group>"; };
+		95F6E0971BC95038008ADCDA /* UIView+Border.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Border.m"; sourceTree = "<group>"; };
+		95F6E09A1BC9518E008ADCDA /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
+		95F6E09B1BC9518E008ADCDA /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		C4E7364CB2FF34834FB90989 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E452AC41B5CC92AB1310644E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,6 +125,7 @@
 				95F6E0561BC93D35008ADCDA /* Four-Prefix.pch */,
 				95F6E0531BC93D35008ADCDA /* AppDelegate.h */,
 				95F6E0541BC93D35008ADCDA /* AppDelegate.m */,
+				95F6E0931BC95038008ADCDA /* UI */,
 				95F6E0871BC949B7008ADCDA /* Login */,
 				95F6E0501BC93D35008ADCDA /* Supporting Files */,
 				95F6E05A1BC93D35008ADCDA /* LaunchScreen.storyboard */,
@@ -150,8 +165,24 @@
 			isa = PBXGroup;
 			children = (
 				95F6E0881BC949B7008ADCDA /* Login.storyboard */,
+				95F6E09A1BC9518E008ADCDA /* LoginVC.h */,
+				95F6E09B1BC9518E008ADCDA /* LoginVC.m */,
+				95F6E0901BC94FB0008ADCDA /* BMLoginWidget.xib */,
+				95F6E08E1BC94FB0008ADCDA /* BMLoginWidget.h */,
+				95F6E08F1BC94FB0008ADCDA /* BMLoginWidget.m */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		95F6E0931BC95038008ADCDA /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				95F6E0941BC95038008ADCDA /* BMTextField.h */,
+				95F6E0951BC95038008ADCDA /* BMTextField.m */,
+				95F6E0961BC95038008ADCDA /* UIView+Border.h */,
+				95F6E0971BC95038008ADCDA /* UIView+Border.m */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		9AD977B6D09F69A9BDF7D319 /* Pods */ = {
@@ -279,6 +310,7 @@
 			files = (
 				95F6E05C1BC93D35008ADCDA /* LaunchScreen.storyboard in Resources */,
 				95F6E0591BC93D35008ADCDA /* Assets.xcassets in Resources */,
+				95F6E0921BC94FB0008ADCDA /* BMLoginWidget.xib in Resources */,
 				95F6E0891BC949B7008ADCDA /* Login.storyboard in Resources */,
 				95F6E08D1BC94CE7008ADCDA /* Info.plist in Resources */,
 				95F6E0571BC93D35008ADCDA /* Four-Prefix.pch in Resources */,
@@ -354,6 +386,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95F6E0981BC95038008ADCDA /* BMTextField.m in Sources */,
+				95F6E0991BC95038008ADCDA /* UIView+Border.m in Sources */,
+				95F6E09C1BC9518E008ADCDA /* LoginVC.m in Sources */,
+				95F6E0911BC94FB0008ADCDA /* BMLoginWidget.m in Sources */,
 				95F6E08B1BC94CE3008ADCDA /* main.m in Sources */,
 				95F6E0551BC93D35008ADCDA /* AppDelegate.m in Sources */,
 			);
