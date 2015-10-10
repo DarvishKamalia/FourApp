@@ -13,10 +13,9 @@
 
 + (instancetype)sharedManager;
 
-- (void)createRideWithStart:(CLLocation *)start
-                destination:(CLLocation *)destination
-                      price:(float)price
-                      seats:(int)seats
+- (void)createRideWithStart:(CLLocation *)start destination:(CLLocation *)destination
+                  departure:(NSDate *)departure
+                      price:(float)price seats:(int)seats
                       block:(void (^)(NSError *error))block;
 
 @end

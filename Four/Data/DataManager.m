@@ -37,7 +37,8 @@
 /**
  * Create a new PFObject Ride with the given parameters, and save.
  */
-- (void)createRideWithStart:(CLLocation *)start destination:(CLLocation *)destination price:(float)price seats:(int)seats
+- (void)createRideWithStart:(CLLocation *)start destination:(CLLocation *)destination departure:(NSDate *)departure
+                      price:(float)price seats:(int)seats
                       block:(void (^)(NSError *error))block
 {
     PFGeoPoint *startGP = [PFGeoPoint geoPointWithLocation:start];
@@ -56,6 +57,7 @@
     PFObject *newRide = [PFObject objectWithClassName:@"Ride"];
     newRide[@"start"] = startLoc;
     newRide[@"destination"] = destLoc;
+    newRide[@"departure"] = departure;
     newRide[@"driver"] = driver;
     newRide[@"riders"] = [NSArray array];
     newRide[@"price"] = priceObj;
