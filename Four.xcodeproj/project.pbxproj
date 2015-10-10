@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1FD8C9131BC96FDB006842BE /* RequestRideStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FD8C9121BC96FDB006842BE /* RequestRideStoryboard.storyboard */; settings = {ASSET_TAGS = (); }; };
+		1FD8C9161BC97006006842BE /* RequestARideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD8C9151BC97006006842BE /* RequestARideViewController.m */; settings = {ASSET_TAGS = (); }; };
+		1FD8C9181BC970EE006842BE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8C9171BC970EE006842BE /* MapKit.framework */; };
 		4DFB03F813C49E2FD9E5C301 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BFC1A5B185ADE3B75588420 /* libPods.a */; };
 		95F6E0551BC93D35008ADCDA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E0541BC93D35008ADCDA /* AppDelegate.m */; };
 		95F6E0571BC93D35008ADCDA /* Four-Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = 95F6E0561BC93D35008ADCDA /* Four-Prefix.pch */; };
@@ -41,6 +44,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1FD8C9121BC96FDB006842BE /* RequestRideStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RequestRideStoryboard.storyboard; path = "Request A Ride/RequestRideStoryboard.storyboard"; sourceTree = "<group>"; };
+		1FD8C9141BC97006006842BE /* RequestARideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RequestARideViewController.h; path = "Request A Ride/RequestARideViewController.h"; sourceTree = "<group>"; };
+		1FD8C9151BC97006006842BE /* RequestARideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RequestARideViewController.m; path = "Request A Ride/RequestARideViewController.m"; sourceTree = "<group>"; };
+		1FD8C9171BC970EE006842BE /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		5BFC1A5B185ADE3B75588420 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		95F6E04D1BC93D35008ADCDA /* Four.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Four.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95F6E0531BC93D35008ADCDA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -75,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FD8C9181BC970EE006842BE /* MapKit.framework in Frameworks */,
 				4DFB03F813C49E2FD9E5C301 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -96,6 +104,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1FD8C9111BC96F66006842BE /* Request A Ride */ = {
+			isa = PBXGroup;
+			children = (
+				1FD8C9121BC96FDB006842BE /* RequestRideStoryboard.storyboard */,
+				1FD8C9141BC97006006842BE /* RequestARideViewController.h */,
+				1FD8C9151BC97006006842BE /* RequestARideViewController.m */,
+			);
+			name = "Request A Ride";
+			sourceTree = "<group>";
+		};
 		95F6E0441BC93D35008ADCDA = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +139,7 @@
 		95F6E04F1BC93D35008ADCDA /* Four */ = {
 			isa = PBXGroup;
 			children = (
+				1FD8C9111BC96F66006842BE /* Request A Ride */,
 				95F6E0561BC93D35008ADCDA /* Four-Prefix.pch */,
 				95F6E0531BC93D35008ADCDA /* AppDelegate.h */,
 				95F6E0541BC93D35008ADCDA /* AppDelegate.m */,
@@ -196,6 +215,7 @@
 		AFADABAE3FFE14E736A5D054 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1FD8C9171BC970EE006842BE /* MapKit.framework */,
 				5BFC1A5B185ADE3B75588420 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -271,6 +291,11 @@
 				TargetAttributes = {
 					95F6E04C1BC93D35008ADCDA = {
 						CreatedOnToolsVersion = 7.0.1;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					95F6E0611BC93D35008ADCDA = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -307,6 +332,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FD8C9131BC96FDB006842BE /* RequestRideStoryboard.storyboard in Resources */,
 				95F6E05C1BC93D35008ADCDA /* LaunchScreen.storyboard in Resources */,
 				95F6E0591BC93D35008ADCDA /* Assets.xcassets in Resources */,
 				95F6E0921BC94FB0008ADCDA /* BMLoginWidget.xib in Resources */,
@@ -388,6 +414,7 @@
 				95F6E0991BC95038008ADCDA /* UIView+Border.m in Sources */,
 				95F6E09C1BC9518E008ADCDA /* LoginVC.m in Sources */,
 				95F6E0911BC94FB0008ADCDA /* BMLoginWidget.m in Sources */,
+				1FD8C9161BC97006006842BE /* RequestARideViewController.m in Sources */,
 				95F6E08B1BC94CE3008ADCDA /* main.m in Sources */,
 				95F6E0551BC93D35008ADCDA /* AppDelegate.m in Sources */,
 			);
