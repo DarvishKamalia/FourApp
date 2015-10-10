@@ -12,6 +12,8 @@
 		1FD8C9181BC970EE006842BE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8C9171BC970EE006842BE /* MapKit.framework */; };
 		1FD8C91C1BC978CC006842BE /* RideAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD8C91B1BC978CC006842BE /* RideAnnotation.m */; settings = {ASSET_TAGS = (); }; };
 		1FD8C91E1BC980FA006842BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FD8C91D1BC980FA006842BE /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
+		7C322E1F1BC9898500EBDAB6 /* CreateRide.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C322E1D1BC9898500EBDAB6 /* CreateRide.storyboard */; settings = {ASSET_TAGS = (); }; };
+		7C322E201BC9898500EBDAB6 /* CreateRideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C322E1E1BC9898500EBDAB6 /* CreateRideViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		95F6E0551BC93D35008ADCDA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E0541BC93D35008ADCDA /* AppDelegate.m */; };
 		95F6E0571BC93D35008ADCDA /* Four-Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = 95F6E0561BC93D35008ADCDA /* Four-Prefix.pch */; };
 		95F6E0591BC93D35008ADCDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 95F6E0581BC93D35008ADCDA /* Assets.xcassets */; };
@@ -54,6 +56,9 @@
 		1FD8C91B1BC978CC006842BE /* RideAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RideAnnotation.m; path = "Request A Ride/RideAnnotation.m"; sourceTree = "<group>"; };
 		1FD8C91D1BC980FA006842BE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		531BF9327790788BAF62D717 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C322E1C1BC9898400EBDAB6 /* Four-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Four-Bridging-Header.h"; sourceTree = "<group>"; };
+		7C322E1D1BC9898500EBDAB6 /* CreateRide.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateRide.storyboard; sourceTree = "<group>"; };
+		7C322E1E1BC9898500EBDAB6 /* CreateRideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRideViewController.swift; sourceTree = "<group>"; };
 		95F6E04D1BC93D35008ADCDA /* Four.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Four.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95F6E0531BC93D35008ADCDA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		95F6E0541BC93D35008ADCDA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -207,6 +212,9 @@
 				95F6E0951BC95038008ADCDA /* BMTextField.m */,
 				95F6E0961BC95038008ADCDA /* UIView+Border.h */,
 				95F6E0971BC95038008ADCDA /* UIView+Border.m */,
+				7C322E1D1BC9898500EBDAB6 /* CreateRide.storyboard */,
+				7C322E1E1BC9898500EBDAB6 /* CreateRideViewController.swift */,
+				7C322E1C1BC9898400EBDAB6 /* Four-Bridging-Header.h */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -294,6 +302,7 @@
 		95F6E0451BC93D35008ADCDA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = SCSC;
 				TargetAttributes = {
@@ -344,6 +353,7 @@
 				1FD8C9131BC96FDB006842BE /* RequestRideStoryboard.storyboard in Resources */,
 				95F6E05C1BC93D35008ADCDA /* LaunchScreen.storyboard in Resources */,
 				95F6E0591BC93D35008ADCDA /* Assets.xcassets in Resources */,
+				7C322E1F1BC9898500EBDAB6 /* CreateRide.storyboard in Resources */,
 				95F6E0921BC94FB0008ADCDA /* BMLoginWidget.xib in Resources */,
 				95F6E0891BC949B7008ADCDA /* Login.storyboard in Resources */,
 				95F6E0571BC93D35008ADCDA /* Four-Prefix.pch in Resources */,
@@ -422,6 +432,7 @@
 				95F6E0981BC95038008ADCDA /* BMTextField.m in Sources */,
 				95F6E0991BC95038008ADCDA /* UIView+Border.m in Sources */,
 				1FD8C91C1BC978CC006842BE /* RideAnnotation.m in Sources */,
+				7C322E201BC9898500EBDAB6 /* CreateRideViewController.swift in Sources */,
 				95F6E09C1BC9518E008ADCDA /* LoginVC.m in Sources */,
 				95F6E0911BC94FB0008ADCDA /* BMLoginWidget.m in Sources */,
 				1FD8C9161BC97006006842BE /* RequestARideViewController.m in Sources */,
@@ -558,10 +569,13 @@
 			baseConfigurationReference = E452AC41B5CC92AB1310644E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Four/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.scsc.four.Four;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Four/UI/Four-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -570,10 +584,12 @@
 			baseConfigurationReference = C4E7364CB2FF34834FB90989 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Four/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.scsc.four.Four;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Four/UI/Four-Bridging-Header.h";
 			};
 			name = Release;
 		};
