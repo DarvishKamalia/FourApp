@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Alamofire
 
-class CreateRideViewController: UIViewController {
+let uberServerToken = "HsamnrlCAg6WYkv4t5oEcMalWaTlnUmFtGvT-BV6"
+
+class CreateRideViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var startAddressTextField: UITextField!
     @IBOutlet weak var destinationAddressTextField: UITextField!
@@ -17,7 +20,25 @@ class CreateRideViewController: UIViewController {
     
     @IBOutlet weak var createRideButton: UIButton!
     
+    
     @IBAction func createRideButtonPressed(sender: AnyObject) {
+        
+        let url = "https://sandbox-api.uber.com/v1/products"
+        
+
+        
+        Alamofire.request(.GET, url, parameters: ["server_token" : uberServerToken, "latitude" : 0.0 , "longitude" : 0.0], headers: ["server_token" : uberServerToken]).responseJSON(completionHandler: {
+            
+            (response) in
+            
+            if let JSON = response.result.value {
+                
+                print (JSON)
+                
+            }
+            
+            
+        })
         
         
     }
@@ -30,6 +51,18 @@ class CreateRideViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        if (textField == self.destinationAddressTextField) {
+            
+            let startAddress = self.startAddressTextField.text!
+            let destinationAddress = self.destinationAddressTextField.text!
+            
+            
+            
+            
+        }
     }
     
     
