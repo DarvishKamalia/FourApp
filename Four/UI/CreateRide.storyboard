@@ -207,6 +207,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="availableSeatsField" destination="pat-0Q-OA9" id="ohn-W9-dK6"/>
+                        <outlet property="departureDatePicker" destination="ypx-Ki-45u" id="CH3-bF-zSY"/>
                         <outlet property="destinationAddressTextField" destination="XTY-4A-mSG" id="RV5-Zz-UxZ"/>
                         <outlet property="pricePerSeatTextField" destination="Lwf-d0-xO3" id="Edo-cV-uGg"/>
                         <outlet property="startAddressTextField" destination="eFB-J9-DxO" id="ooI-P0-Weo"/>

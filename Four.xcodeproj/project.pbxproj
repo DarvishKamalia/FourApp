@@ -12,6 +12,7 @@
 		1FD8C9181BC970EE006842BE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FD8C9171BC970EE006842BE /* MapKit.framework */; };
 		1FD8C91C1BC978CC006842BE /* RideAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1FD8C91B1BC978CC006842BE /* RideAnnotation.m */; settings = {ASSET_TAGS = (); }; };
 		1FD8C91E1BC980FA006842BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FD8C91D1BC980FA006842BE /* Main.storyboard */; settings = {ASSET_TAGS = (); }; };
+		7C10E8291BC9D7FA0055EF8C /* util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C10E8281BC9D7FA0055EF8C /* util.swift */; settings = {ASSET_TAGS = (); }; };
 		7C322E1F1BC9898500EBDAB6 /* CreateRide.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C322E1D1BC9898500EBDAB6 /* CreateRide.storyboard */; settings = {ASSET_TAGS = (); }; };
 		7C322E201BC9898500EBDAB6 /* CreateRideVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C322E1E1BC9898500EBDAB6 /* CreateRideVC.swift */; settings = {ASSET_TAGS = (); }; };
 		95F6E0551BC93D35008ADCDA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E0541BC93D35008ADCDA /* AppDelegate.m */; };
@@ -57,6 +58,7 @@
 		1FD8C91B1BC978CC006842BE /* RideAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RideAnnotation.m; path = "Request A Ride/RideAnnotation.m"; sourceTree = "<group>"; };
 		1FD8C91D1BC980FA006842BE /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		531BF9327790788BAF62D717 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C10E8281BC9D7FA0055EF8C /* util.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = util.swift; sourceTree = "<group>"; };
 		7C322E1C1BC9898400EBDAB6 /* Four-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Four-Bridging-Header.h"; path = "UI/Four-Bridging-Header.h"; sourceTree = "<group>"; };
 		7C322E1D1BC9898500EBDAB6 /* CreateRide.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateRide.storyboard; sourceTree = "<group>"; };
 		7C322E1E1BC9898500EBDAB6 /* CreateRideVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateRideVC.swift; sourceTree = "<group>"; };
@@ -168,7 +170,6 @@
 				95F6E0531BC93D35008ADCDA /* AppDelegate.h */,
 				95F6E0541BC93D35008ADCDA /* AppDelegate.m */,
 				7C322E1C1BC9898400EBDAB6 /* Four-Bridging-Header.h */,
-				7C16EC2E1BC99D0600C3D710 /* CreateRide */,
 				95F6E0931BC95038008ADCDA /* UI */,
 				95F6E09D1BC99EFF008ADCDA /* Data */,
 				95F6E0871BC949B7008ADCDA /* Login */,
@@ -185,6 +186,7 @@
 		95F6E0501BC93D35008ADCDA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7C10E8281BC9D7FA0055EF8C /* util.swift */,
 				95F6E08C1BC94CE7008ADCDA /* Info.plist */,
 				95F6E08A1BC94CE3008ADCDA /* main.m */,
 			);
@@ -457,6 +459,7 @@
 				1FD8C91C1BC978CC006842BE /* RideAnnotation.m in Sources */,
 				7C322E201BC9898500EBDAB6 /* CreateRideVC.swift in Sources */,
 				95F6E09C1BC9518E008ADCDA /* LoginVC.m in Sources */,
+				7C10E8291BC9D7FA0055EF8C /* util.swift in Sources */,
 				95F6E0911BC94FB0008ADCDA /* BMLoginWidget.m in Sources */,
 				1FD8C9161BC97006006842BE /* RequestARideViewController.m in Sources */,
 				95F6E08B1BC94CE3008ADCDA /* main.m in Sources */,

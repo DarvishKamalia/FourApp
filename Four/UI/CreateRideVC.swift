@@ -21,11 +21,59 @@ class CreateRideVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var destinationAddressTextField: UITextField!
     @IBOutlet weak var uberEstimateTextLabel: UILabel!
     @IBOutlet weak var pricePerSeatTextField: UITextField!
+    @IBOutlet weak var availableSeatsField: UITextField!
     
+    @IBOutlet weak var departureDatePicker: UIDatePicker!
     
     @IBAction func createRideButtonPressed(sender: AnyObject) {
         
+        let coder = CLGeocoder()
+        coder.geocodeAddressString(startAddressTextField.text!, completionHandler: { (startMarks, error) -> Void in
+            
+            if let startMark = startMarks?.first! {
+                
+                coder.geocodeAddressString(self.destinationAddressTextField.text!, completionHandler: { (endMarks, error) -> Void in
+                    
+                    if let endMark = endMarks?.first {
+                    
+                        DataManager.sharedManager().createRideWithStart(startMark.location, destination: endMark.location, departure: self.departureDatePicker.date, price: Float((self.pricePerSeatTextField.text?.toDouble())!), seats: (self.availableSeatsField.text?.toInt32())!, block: { (error) -> Void in
+                            
+                            if (error == nil){
+                                self.presentViewController(createAlert("Success", message: "Ride Created Successfully"), animated: true, completion: nil)
+                            }
+                            
+                            else {
+                                
+                                print ("damn")
+                                
+                            }
+                            
+                            
+                            
+                        })
+                        
+                        
+                        
+                    }
+                        
+                    else {
+                        
+                        print ("no end")
+                    }
+                    
+                    
+                })
+                
+            }
+                
+            else {
+                
+                print ("no start")
+                
+            }
+
         
+        })
         
     }
     
@@ -63,9 +111,6 @@ class CreateRideVC: UIViewController, UITextFieldDelegate {
                     coder.geocodeAddressString(self.destinationAddressTextField.text!, completionHandler: { (endMarks, error) -> Void in
                         
                         if let endMark = endMarks?.first {
-                            
-                            
-                
                             
                             Alamofire.request(Method.GET, uberAPIURL + "estimates/price", parameters: [
                             
@@ -112,16 +157,6 @@ class CreateRideVC: UIViewController, UITextFieldDelegate {
                 }
             })
         
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
         }
     }
     
