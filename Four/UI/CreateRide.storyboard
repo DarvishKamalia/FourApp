@@ -23,11 +23,17 @@
                                 <color key="backgroundColor" red="0.98390151520000002" green="0.98390151520000002" blue="0.98390151520000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ljg-8W-Qlh" id="tC4-ev-NAB"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder=" Destination Address" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XTY-4A-mSG">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ljg-8W-Qlh" id="xoE-o5-QXK"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UberX estimate: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uI0-fN-oMK">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -117,16 +123,16 @@
                                 <exclude reference="Ygz-hg-UQD"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="B8T-9A-A9i"/>
+                                <exclude reference="poo-hd-Osz"/>
+                                <exclude reference="rZi-2C-KxE"/>
                                 <exclude reference="2TS-bc-qb3"/>
                                 <exclude reference="IRe-PI-b6n"/>
                                 <exclude reference="tj3-9q-DKh"/>
                                 <exclude reference="ziw-vM-NwU"/>
-                                <exclude reference="EbS-St-Fx8"/>
-                                <exclude reference="g3b-Dc-zUX"/>
-                                <exclude reference="uPQ-Z5-Xwh"/>
-                                <exclude reference="B8T-9A-A9i"/>
-                                <exclude reference="poo-hd-Osz"/>
-                                <exclude reference="rZi-2C-KxE"/>
+                                <exclude reference="TTd-Jj-xst"/>
+                                <exclude reference="d4H-Wy-xi4"/>
+                                <exclude reference="l8j-fm-81s"/>
                                 <exclude reference="69l-sI-eet"/>
                                 <exclude reference="XRC-tY-ghq"/>
                                 <exclude reference="b2a-lS-LCM"/>
@@ -136,9 +142,9 @@
                                 <exclude reference="5hQ-Yq-Q1n"/>
                                 <exclude reference="gg3-zb-hqB"/>
                                 <exclude reference="hyx-Xt-wLx"/>
-                                <exclude reference="TTd-Jj-xst"/>
-                                <exclude reference="d4H-Wy-xi4"/>
-                                <exclude reference="l8j-fm-81s"/>
+                                <exclude reference="EbS-St-Fx8"/>
+                                <exclude reference="g3b-Dc-zUX"/>
+                                <exclude reference="uPQ-Z5-Xwh"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -152,16 +158,16 @@
                                 <include reference="Ygz-hg-UQD"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="B8T-9A-A9i"/>
+                                <include reference="poo-hd-Osz"/>
+                                <include reference="rZi-2C-KxE"/>
                                 <include reference="2TS-bc-qb3"/>
                                 <include reference="IRe-PI-b6n"/>
                                 <include reference="tj3-9q-DKh"/>
                                 <include reference="ziw-vM-NwU"/>
-                                <include reference="EbS-St-Fx8"/>
-                                <include reference="g3b-Dc-zUX"/>
-                                <include reference="uPQ-Z5-Xwh"/>
-                                <include reference="B8T-9A-A9i"/>
-                                <include reference="poo-hd-Osz"/>
-                                <include reference="rZi-2C-KxE"/>
+                                <include reference="TTd-Jj-xst"/>
+                                <include reference="d4H-Wy-xi4"/>
+                                <include reference="l8j-fm-81s"/>
                                 <include reference="69l-sI-eet"/>
                                 <include reference="XRC-tY-ghq"/>
                                 <include reference="b2a-lS-LCM"/>
@@ -171,9 +177,9 @@
                                 <include reference="5hQ-Yq-Q1n"/>
                                 <include reference="gg3-zb-hqB"/>
                                 <include reference="hyx-Xt-wLx"/>
-                                <include reference="TTd-Jj-xst"/>
-                                <include reference="d4H-Wy-xi4"/>
-                                <include reference="l8j-fm-81s"/>
+                                <include reference="EbS-St-Fx8"/>
+                                <include reference="g3b-Dc-zUX"/>
+                                <include reference="uPQ-Z5-Xwh"/>
                             </mask>
                         </variation>
                     </view>
