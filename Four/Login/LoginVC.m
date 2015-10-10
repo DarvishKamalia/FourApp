@@ -128,6 +128,7 @@
          
          //segue to some view
          NSLog(@"%@", [PFUser currentUser]);
+         [self performSegueWithIdentifier:@"loginSegue" sender:nil];
      }];
 }
 
@@ -150,6 +151,7 @@
         
         //segue to some view
         NSLog(@"%@", [PFUser currentUser]);
+        [self performSegueWithIdentifier:@"loginSegue" sender:nil];
     }];
 }
 
