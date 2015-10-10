@@ -6,17 +6,17 @@
 //  Copyright © 2015 SCSC. All rights reserved.
 //
 
-#import "ParseManager.h"
+#import "DataManager.h"
 
 
-@interface ParseManager()
+@interface DataManager()
 
 
 
 @end
 
 
-@implementation ParseManager
+@implementation DataManager
 #pragma mark Init
 /**
  * Returns singleton instance of ParseManager.
@@ -24,7 +24,7 @@
  */
 + (id)sharedManager
 {
-    static ParseManager *sharedMyManager = nil;
+    static DataManager *sharedMyManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedMyManager = [[self alloc] init];
