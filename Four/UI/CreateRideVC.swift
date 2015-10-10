@@ -26,7 +26,7 @@ class CreateRideViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func createRideButtonPressed(sender: AnyObject) {
         
-        
+
 
     
         
@@ -67,6 +67,14 @@ class CreateRideViewController: UIViewController, UITextFieldDelegate {
                         if let endMark = endMarks?.first {
                             
                             print ("web")
+                            
+                            ParseManager.sharedManager().createRideWithStart(startMark.location, destination: endMark.location, price: 2.5, seats: 20, block: {
+                                
+                                (error) in
+                                
+                                print ("done")
+                        
+                            })
                             
                             Alamofire.request(Method.GET, uberAPIURL + "estimates/price", parameters: [
                             
