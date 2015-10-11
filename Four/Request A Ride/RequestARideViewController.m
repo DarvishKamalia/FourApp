@@ -83,9 +83,8 @@
 {
     // Select annotation view
     
-    if ([view isKindOfClass:[RideAnnotation class]]) {
-        
-        RideAnnotation* annotation = (RideAnnotation *)view;
+    if ([view.annotation isKindOfClass:[RideAnnotation class]]) {
+        RideAnnotation* annotation = (RideAnnotation *)view.annotation;
         Ride * ride = annotation.ride;
         [self performSegueWithIdentifier:@"rideDetailsSegue" sender:ride];
     }
