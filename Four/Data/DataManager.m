@@ -114,9 +114,11 @@
         return;
     }
     
-    NSMutableArray *riders = [NSMutableArray arrayWithArray:ride[@"riders"]];
+    NSMutableArray *riders = [NSMutableArray arrayWithArray:rideObj.riders];
     [riders addObject:rider];
     ride[@"riders"] = riders;
+    
+    ride[@"seatsLeft"] = [NSNumber numberWithInt:rideObj.seatsLeft];
     
     [ride saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
     {
@@ -137,6 +139,8 @@
             return;
         }
         
+        rideObj.riders = riders;
+        rideObj.seatsLeft--;
         block(nil);
     }];
 }
