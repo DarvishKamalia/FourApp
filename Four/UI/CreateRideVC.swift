@@ -26,8 +26,16 @@ class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDele
     
     @IBOutlet weak var departureDatePicker: UIDatePicker!
     
-    var locationManager = CLLocationManager()
-    var currentLocation: CLLocation? = nil
+    var topButton: UIButton? = nil
+    var bottomButton: UIButton? = nil
+    
+    
+    let locationManager = CLLocationManager()
+    
+    
+    var firstFieldItem: MKMapItem? = nil
+    var secondFieldItem: MKMapItem? = nil
+
     
     @IBAction func createRideButtonPressed(sender: AnyObject) {
         
@@ -43,12 +51,14 @@ class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDele
                         DataManager.sharedManager().createRideWithStart(startMark.location, destination: endMark.location, departure: self.departureDatePicker.date, price: Float((self.pricePerSeatTextField.text?.toDouble())!), seats: (self.availableSeatsField.text?.toInt32())!, block: { (error) -> Void in
                             
                             if (error == nil){
-                                self.presentViewController(createAlert("Success", message: "Ride Created Successfully"), animated: true, completion: nil)
+                                self.presentViewController(createAlert("Success", message: "Ride Created!"), animated: true, completion: nil)
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                                self.dismissViewControllerAnimated(true, completion: nil)
+                                
                             }
                             
                             else {
                                 
-                                print ("damn")
                                 
                             }
                             
@@ -85,15 +95,18 @@ class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDele
    
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
         
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-            locationManager.startUpdatingLocation()
-        }
+        
+//        locationManager.requestAlwaysAuthorization()
+//        locationManager.requestWhenInUseAuthorization()
+//        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.requestLocation()
+            
+    
+        
+    
         
         
 
@@ -105,7 +118,15 @@ class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDele
         // Dispose of any resources that can be recreated.
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
+    }
+    
     func textFieldDidEndEditing(textField: UITextField) {
+        self.topButton?.hidden = true
+        self.bottomButton?.hidden = true
+        
         if (textField == self.destinationAddressTextField) {
             
             let startAddress = self.startAddressTextField.text!
@@ -182,31 +203,96 @@ class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDele
         
         let replaced = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
         
-//         if (textField == self.startAddressTextField) {
-//            
-//            let request = MKLocalSearchRequest()
-//            request.naturalLanguageQuery = replaced
-//            request.region = MKCoordinateRegion(center: (currentLocation?.coordinate)!, span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
-//            
-//            MKLocalSearch().startWithCompletionHandler({ (searchResponse, searchError) -> Void in
-//                
-//                if (searchError != nil) {
-//                    
-//                    for response in searchResponse. as! [MKMapItem] {
-//                        
-//                        let res = response
-//                        
-//                        print (res.placemark.subThoroughfare! + " " + res.placemark.thoroughfare!)
-//                        
-//                    }
-//                    
-//                }
-//                
-//            })
-//            
-//        }
+         if (textField == self.startAddressTextField && textField.text?.characters.count > 6) {
+            
+            let request = MKLocalSearchRequest()
+            request.naturalLanguageQuery = replaced
+            if (locationManager.location == nil) {
+                print ("nil location")
+                return true
+            }
+            
+            request.region = MKCoordinateRegion(center: (locationManager.location?.coordinate)!, span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20))
+            
+            let search = MKLocalSearch(request: request)
+            
+            search.startWithCompletionHandler({ (searchResponse, searchError) -> Void in
+                
+               // print ("started search")
+                if (searchError == nil) {
+                    
+                    if let msR = searchResponse {
+                       
+                        if (msR.mapItems.count > 0) {
+                            
+                            self.firstFieldItem = msR.mapItems[0]
+                            
+                            self.topButton?.hidden = true
+                            
+                            if (self.topButton == nil) {
+                                
+                                self.topButton = UIButton(frame: CGRect(x: textField.frame.origin.x, y: textField.frame.origin.y + textField.frame.height, width: textField.frame.width, height: 20))
+                            
+                            }
+                            
+                            self.topButton!.setTitle(self.getStringFromPlacemark(self.firstFieldItem!.placemark), forState: .Normal)
+                            
+                            if (self.getStringFromPlacemark(self.firstFieldItem!.placemark) == "") {
+                                return 
+                            }
+                            self.topButton?.backgroundColor = UIColor.blackColor()
+                            self.topButton!.addTarget(self, action: "suggestionSelected:", forControlEvents: .TouchUpInside)
+                            self.topButton?.hidden = false
+                            self.view.addSubview(self.topButton!)
+                        }
+                        
+                    }
+                    
+                    else {
+                        print ("no response")
+                    }
+                    
+                }
+                
+                else {
+                    
+                    print(searchError!.localizedDescription)
+                }
+                
+            })
+            
+        }
         
         return true
+        
+        
+    }
+    
+    //TableView methods
+    
+    func suggestionSelected (sender: UIButton) {
+        
+        sender.hidden = true
+        
+        if (self.startAddressTextField.editing) {
+            
+            self.startAddressTextField.text = self.getStringFromPlacemark((firstFieldItem?.placemark)!)
+        }
+        else {
+            self.destinationAddressTextField.text = self.getStringFromPlacemark((secondFieldItem?.placemark)!)
+        }
+        
+    }
+    
+    
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print ("updated location")
+        
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("Error finding location: \(error.localizedDescription)")
     }
     
 
@@ -220,4 +306,21 @@ class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDele
     }
     */
 
+    func getStringFromPlacemark (placemark : CLPlacemark) -> String {
+        var localityString = "";
+        
+        if (placemark.locality == nil || placemark.postalCode == nil || placemark.subThoroughfare == nil || placemark.thoroughfare == nil) {
+            
+            return ""
+        }
+        
+        else {
+            
+            localityString = ", " + (placemark.locality)! + ", " + (placemark.postalCode)!
+            return placemark.subThoroughfare! + " " + placemark.thoroughfare! + localityString
+            
+        }
+        
+        
+    }
 }
