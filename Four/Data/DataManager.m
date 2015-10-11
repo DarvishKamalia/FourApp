@@ -111,6 +111,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Start"];
     [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
     [query includeKey:@"ride"];
+    [query includeKey:@"ride.start"];
     [query includeKey:@"ride.destination"];
     query.limit = 10;
     
@@ -145,24 +146,28 @@
     [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
     [query includeKey:@"ride"];
     [query includeKey:@"ride.start"];
+    [query includeKey:@"ride.destination"];
     query.limit = 10;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
-     {
-         if (error)
-         {
-             //error handling
-             block(nil, error);
-             return;
-         }
-         
-         //success
-         NSMutableArray *rides = [NSMutableArray array];
-         for (PFObject *dest in objects)
-             [rides addObject: [[Ride alloc] initWithRide:dest[@"ride"]] ];
-         
-         block(rides, nil);
-     }];
+    {
+        if (error)
+        {
+            //error handling
+            NSLog(@"error");
+            block(nil, error);
+            return;
+        }
+        
+        //success
+        NSMutableArray *rides = [NSMutableArray array];
+        for (PFObject *dest in objects)
+        {
+            [rides addObject: [[Ride alloc] initWithRide:dest[@"ride"]] ];
+        }
+        
+        block(rides, nil);
+    }];
 }
 
 

@@ -15,8 +15,12 @@
  */
 @interface Ride : NSObject
 
-@property (nonatomic, strong) PFObject *const start;
-@property (nonatomic, strong) PFObject *const destination;
+@property (nonatomic, weak) PFObject *const pfRide;
+@property (nonatomic, weak) PFGeoPoint *const startGP;
+@property (nonatomic, weak) PFGeoPoint *const destinationGP;
+
+@property (nonatomic, strong) CLLocation *const start;
+@property (nonatomic, strong) CLLocation *const destination;
 @property (nonatomic, strong) PFUser  *const driver;
 @property (nonatomic, strong) NSArray *const riders;
 @property (nonatomic, strong) NSDate  *const departure;

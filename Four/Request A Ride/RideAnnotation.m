@@ -25,7 +25,7 @@
     if (self) {
         self.ride = ride;
 
-        PFGeoPoint* start = self.ride.start[@"geopoint"];
+        CLLocation* start = self.ride.start;
         self.coordinate = CLLocationCoordinate2DMake(start.latitude, start.longitude);
         NSLog(@"%f", self.coordinate.latitude);
     }

@@ -24,8 +24,13 @@
 {
     if (self = [super init])
     {
-        self.start = ride[@"start"];
-        self.destination = ride[@"destination"];
+        self.pfRide = ride;
+    
+        self.startGP = ride[@"start"][@"geopoint"];
+        self.destinationGP = ride[@"destination"][@"geopoint"];
+        
+        self.start = [[CLLocation alloc] initWithLatitude:self.startGP.latitude longitude:self.startGP.longitude];
+        self.destination = [[CLLocation alloc] initWithLatitude:self.destinationGP.latitude longitude:self.destinationGP.longitude];
         
         self.driver = ride[@"driver"];
         self.riders = ride[@"riders"];

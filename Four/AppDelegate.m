@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "DataManager.h"
+#import <CoreLocation/CoreLocation.h>
+#import "Ride.h"
 
 
 @interface AppDelegate ()
@@ -32,6 +35,19 @@
     UIStoryboard *sb = [UIStoryboard storyboardWithName:sbname bundle:nil];
     UIViewController *initVC = [sb instantiateInitialViewController];
     self.window.rootViewController = initVC;
+    
+    DataManager *manager = [DataManager sharedManager];
+    CLLocation *loc = [[CLLocation alloc] initWithLatitude:34.022352 longitude:-118.285117];
+    [manager getRidesEndingNear:loc within:10 block:^(NSArray *rides, NSError *error)
+    {
+        NSLog(@"%@", rides);
+        for (Ride *ride in rides)
+        {
+            NSLog(@"%@", ride);
+            NSLog(@"%f", ride.price);
+        }
+    }];
+    
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
