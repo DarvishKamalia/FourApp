@@ -71,21 +71,21 @@
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Location" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPr-Gn-9yc">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPD-mC-SHw">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k4p-he-GV9">
@@ -102,14 +102,14 @@
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beU-2U-JnF">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -146,22 +146,22 @@
                                 <exclude reference="beU-2U-JnF"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="8MK-IF-Kga"/>
-                                <exclude reference="KwZ-Gt-vmt"/>
-                                <exclude reference="dRa-uM-ftz"/>
-                                <exclude reference="TV6-uS-N7g"/>
-                                <exclude reference="heU-kw-drG"/>
-                                <exclude reference="zyI-z5-3Vh"/>
+                                <exclude reference="3V5-Q5-gOv"/>
+                                <exclude reference="BTn-3X-BQG"/>
                                 <exclude reference="RG6-pG-t56"/>
                                 <exclude reference="kEw-wd-a9B"/>
                                 <exclude reference="yXN-wQ-WXx"/>
-                                <exclude reference="1TU-20-KOu"/>
-                                <exclude reference="VtL-dx-Xge"/>
+                                <exclude reference="8MK-IF-Kga"/>
+                                <exclude reference="KwZ-Gt-vmt"/>
+                                <exclude reference="dRa-uM-ftz"/>
                                 <exclude reference="DMg-cP-fLi"/>
                                 <exclude reference="ae5-be-bvE"/>
                                 <exclude reference="grz-WT-CxB"/>
-                                <exclude reference="3V5-Q5-gOv"/>
-                                <exclude reference="BTn-3X-BQG"/>
+                                <exclude reference="TV6-uS-N7g"/>
+                                <exclude reference="heU-kw-drG"/>
+                                <exclude reference="zyI-z5-3Vh"/>
+                                <exclude reference="1TU-20-KOu"/>
+                                <exclude reference="VtL-dx-Xge"/>
                                 <exclude reference="TtZ-56-vtZ"/>
                             </mask>
                         </variation>
@@ -175,22 +175,22 @@
                                 <include reference="beU-2U-JnF"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="8MK-IF-Kga"/>
-                                <include reference="KwZ-Gt-vmt"/>
-                                <include reference="dRa-uM-ftz"/>
-                                <include reference="TV6-uS-N7g"/>
-                                <include reference="heU-kw-drG"/>
-                                <include reference="zyI-z5-3Vh"/>
+                                <include reference="3V5-Q5-gOv"/>
+                                <include reference="BTn-3X-BQG"/>
                                 <include reference="RG6-pG-t56"/>
                                 <include reference="kEw-wd-a9B"/>
                                 <include reference="yXN-wQ-WXx"/>
-                                <include reference="1TU-20-KOu"/>
-                                <include reference="VtL-dx-Xge"/>
+                                <include reference="8MK-IF-Kga"/>
+                                <include reference="KwZ-Gt-vmt"/>
+                                <include reference="dRa-uM-ftz"/>
                                 <include reference="DMg-cP-fLi"/>
                                 <include reference="ae5-be-bvE"/>
                                 <include reference="grz-WT-CxB"/>
-                                <include reference="3V5-Q5-gOv"/>
-                                <include reference="BTn-3X-BQG"/>
+                                <include reference="TV6-uS-N7g"/>
+                                <include reference="heU-kw-drG"/>
+                                <include reference="zyI-z5-3Vh"/>
+                                <include reference="1TU-20-KOu"/>
+                                <include reference="VtL-dx-Xge"/>
                                 <include reference="TtZ-56-vtZ"/>
                             </mask>
                         </variation>

@@ -32,6 +32,7 @@
     
     self.startLocationLabel.text = @"";
     self.destinationLocationLabel.text = @"";
+    self.timeEstimateLabel.text = @"";
     
     // Reverse start and end
     [self.geocoder reverseGeocodeLocation:self.ride.start completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
