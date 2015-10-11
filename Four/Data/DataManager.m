@@ -126,7 +126,7 @@
         //success
         NSMutableArray *rides = [NSMutableArray array];
         for (PFObject *start in objects)
-            [rides addObject: [[Ride alloc] initWithRide:start[@"ride"]] ];
+            [rides addObject: [[Ride alloc] initWithRide:start[@"ride"]]];
         
         block(rides, nil);
     }];

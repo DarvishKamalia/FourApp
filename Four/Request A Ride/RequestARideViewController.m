@@ -8,8 +8,9 @@
 
 #import "RequestARideViewController.h"
 #import "RideAnnotation.h"
+#import "DataManager.h"
 
-@interface RequestARideViewController () <UISearchBarDelegate, MKMapViewDelegate>
+@interface RequestARideViewController () <UISearchBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate>
 
 // IBOutlets
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
@@ -17,6 +18,7 @@
 @property (strong, nonatomic) UISearchBar* searchBar;
 
 @property (strong, nonatomic) CLGeocoder* geocoder;
+@property (strong, nonatomic) CLLocationManager* manager;
 
 // Store all the annotations which we initially request, when the view loads
 @property (strong, nonatomic) NSMutableArray<RideAnnotation *>* initialAnnotations;
@@ -37,18 +39,47 @@
     // The title view is the search bar
     self.navigationItem.titleView = self.searchBar;
     
-    
     // When the view initially loads, then request for a bunch of rides
     // starting near you. Pass all of these rides object, to the MKAnnotation
     
-    
+    self.manager = [[CLLocationManager alloc] init];
+    self.manager.delegate = self;
+    self.manager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.manager requestWhenInUseAuthorization];
+
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        [self.manager startUpdatingLocation];
+        self.mapView.showsUserLocation = YES;
+    }
+}
+
+- (void) fetchInitialRides:(CLLocation *) location
+{    
+    [[DataManager sharedManager] getRidesStartingNear:location within:5 block:^(NSArray *rides, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            for (Ride* object in rides) {
+                RideAnnotation* ride = [[RideAnnotation alloc] initWithRide:object];
+                [self.initialAnnotations addObject:ride];
+            }
+            [self.mapView addAnnotations:self.initialAnnotations];
+        });
+    }];
+}
+
+#pragma mark - CLLocation Manager Delegate
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations
+{
+    CLLocation *location = locations.lastObject;
+    [self.manager stopUpdatingLocation];
+    [self fetchInitialRides:location];
 }
 
 #pragma mark - Map View Delegate
 
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
-    
+    // Select annotation view
 }
 
 #pragma mark - UISearch Bar Delegate
@@ -60,9 +91,16 @@
         
         // for each placemark, find the destination rides
         for (CLPlacemark* placemark in placemarks) {
-            CLLocationCoordinate2D coordinate = placemark.location.coordinate;
-            
-            
+            CLLocation *location = placemark.location;
+            [[DataManager sharedManager] getRidesEndingNear:location within:5 block:^(NSArray *rides, NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.mapView removeAnnotations:self.initialAnnotations];
+                    for (Ride* object in rides) {
+                        RideAnnotation* ride = [[RideAnnotation alloc] initWithRide:object];
+                        [self.mapView addAnnotation:ride];
+                    }
+                });
+            }];
         }
     }];
 }
@@ -87,6 +125,14 @@
     }
     
     return _geocoder;
+}
+
+-(NSMutableArray<RideAnnotation *> *)initialAnnotations
+{
+    if (!_initialAnnotations) {
+        _initialAnnotations = [[NSMutableArray alloc] init];
+    }
+    return _initialAnnotations;
 }
 
 @end
