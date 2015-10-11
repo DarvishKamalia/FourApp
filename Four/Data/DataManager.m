@@ -50,10 +50,8 @@
     
     PFObject *startLoc = [PFObject objectWithClassName:@"Start"];
     startLoc[@"geopoint"] = startGP;
-    startLoc[@"ride"] = newRide;
     PFObject *destLoc  = [PFObject objectWithClassName:@"Destination"];
     destLoc[@"geopoint"] = destGP;
-    destLoc[@"ride"] = newRide;
     
     
     //other fields
@@ -74,18 +72,27 @@
     newRide[@"completed"] = [NSNumber numberWithBool:NO];
     
     //attempt saving ride
-    NSLog(@"%@", newRide.objectId);
-//    [newRide saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-//    {
-//        if (!error)
-//        {
-//            //error handler;
-//            block(error);
-//            return;
-//        }
-//        
-//        block(nil);
-//    }];
+    [newRide saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+    {
+        if (error)
+        {
+            //error handler;
+            block(error);
+            return;
+        }
+
+        NSLog(@"%@", newRide.objectId);
+        startLoc[@"ride"] = newRide;
+        destLoc[@"ride"] = newRide;
+        
+        BOOL saved = [startLoc save] && [destLoc save];
+        if (!saved)
+        {
+            block([NSError errorWithDomain:@"couldn't save locations" code:0 userInfo:@{@"error":@"locations not saved"}]);
+        }
+        
+        block(nil);
+    }];
 }
 
 
@@ -138,7 +145,7 @@
      {
          if (error)
          {
-                 //error handling
+             //error handling
              block(nil, error);
              return;
          }
