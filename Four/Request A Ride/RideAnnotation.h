@@ -12,5 +12,9 @@
 @interface RideAnnotation : NSObject <MKAnnotation>
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
+@property (strong, nonatomic) PFObject* ride;
+
+- (instancetype) initWithRide:(PFObject *)object;
+- (instancetype) initWithCoordinate:(CLLocationCoordinate2D) cooridinate;
 
 @end

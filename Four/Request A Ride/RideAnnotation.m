@@ -19,4 +19,16 @@
     return self;
 }
 
+- (instancetype) initWithRide:(PFObject *)object
+{
+    self = [super init];
+    if (self) {
+        self.ride = object;
+        PFObject* startLocation = object[@"start"];
+        PFGeoPoint* geo = startLocation[@"geopoint"];
+        self.coordinate = CLLocationCoordinate2DMake(geo.latitude, geo.longitude);
+    }
+    return self;
+}
+
 @end
