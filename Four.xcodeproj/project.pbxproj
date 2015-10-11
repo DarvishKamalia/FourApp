@@ -29,6 +29,7 @@
 		95F6E0991BC95038008ADCDA /* UIView+Border.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E0971BC95038008ADCDA /* UIView+Border.m */; settings = {ASSET_TAGS = (); }; };
 		95F6E09C1BC9518E008ADCDA /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E09B1BC9518E008ADCDA /* LoginVC.m */; settings = {ASSET_TAGS = (); }; };
 		95F6E0A01BC99F12008ADCDA /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E09F1BC99F12008ADCDA /* DataManager.m */; settings = {ASSET_TAGS = (); }; };
+		95F6E0A31BCA1766008ADCDA /* Ride.m in Sources */ = {isa = PBXBuildFile; fileRef = 95F6E0A21BCA1766008ADCDA /* Ride.m */; settings = {ASSET_TAGS = (); }; };
 		BD656FA23EEA8C1A4EC1DAEE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 531BF9327790788BAF62D717 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,8 @@
 		95F6E09B1BC9518E008ADCDA /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		95F6E09E1BC99F12008ADCDA /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
 		95F6E09F1BC99F12008ADCDA /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		95F6E0A11BCA1766008ADCDA /* Ride.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ride.h; sourceTree = "<group>"; };
+		95F6E0A21BCA1766008ADCDA /* Ride.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ride.m; sourceTree = "<group>"; };
 		C4E7364CB2FF34834FB90989 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E452AC41B5CC92AB1310644E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -238,6 +241,8 @@
 		95F6E09D1BC99EFF008ADCDA /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				95F6E0A11BCA1766008ADCDA /* Ride.h */,
+				95F6E0A21BCA1766008ADCDA /* Ride.m */,
 				95F6E09E1BC99F12008ADCDA /* DataManager.h */,
 				95F6E09F1BC99F12008ADCDA /* DataManager.m */,
 			);
@@ -463,6 +468,7 @@
 				95F6E0911BC94FB0008ADCDA /* BMLoginWidget.m in Sources */,
 				1FD8C9161BC97006006842BE /* RequestARideViewController.m in Sources */,
 				95F6E08B1BC94CE3008ADCDA /* main.m in Sources */,
+				95F6E0A31BCA1766008ADCDA /* Ride.m in Sources */,
 				95F6E0551BC93D35008ADCDA /* AppDelegate.m in Sources */,
 				95F6E0A01BC99F12008ADCDA /* DataManager.m in Sources */,
 			);

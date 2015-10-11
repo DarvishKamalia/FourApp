@@ -7,6 +7,7 @@
 //
 
 #import "DataManager.h"
+#import "Ride.h"
 
 
 @interface DataManager()
@@ -110,6 +111,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Start"];
     [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
     [query includeKey:@"ride"];
+    [query includeKey:@"ride.destination"];
     query.limit = 10;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
@@ -124,7 +126,7 @@
         //success
         NSMutableArray *rides = [NSMutableArray array];
         for (PFObject *start in objects)
-            [rides addObject:start[@"ride"]];
+            [rides addObject: [[Ride alloc] initWithRide:start[@"ride"]] ];
         
         block(rides, nil);
     }];
@@ -142,6 +144,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Destination"];
     [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
     [query includeKey:@"ride"];
+    [query includeKey:@"ride.start"];
     query.limit = 10;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
@@ -155,8 +158,8 @@
          
          //success
          NSMutableArray *rides = [NSMutableArray array];
-         for (PFObject *start in objects)
-             [rides addObject:start[@"ride"]];
+         for (PFObject *dest in objects)
+             [rides addObject: [[Ride alloc] initWithRide:dest[@"ride"]] ];
          
          block(rides, nil);
      }];
