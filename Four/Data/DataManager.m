@@ -7,6 +7,7 @@
 //
 
 #import "DataManager.h"
+#import "Ride.h"
 
 
 @interface DataManager()
@@ -50,10 +51,8 @@
     
     PFObject *startLoc = [PFObject objectWithClassName:@"Start"];
     startLoc[@"geopoint"] = startGP;
-    startLoc[@"ride"] = newRide;
     PFObject *destLoc  = [PFObject objectWithClassName:@"Destination"];
     destLoc[@"geopoint"] = destGP;
-    destLoc[@"ride"] = newRide;
     
     
     //other fields
@@ -71,15 +70,29 @@
     newRide[@"riders"] = [NSArray array];
     newRide[@"price"] = priceObj;
     newRide[@"seatsLeft"] = seatsObj;
+    newRide[@"completed"] = [NSNumber numberWithBool:NO];
     
     //attempt saving ride
     [newRide saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
     {
-        if (!error)
+        if (error)
         {
             //error handler;
             block(error);
             return;
+        }
+
+        NSLog(@"%@", newRide.objectId);
+        startLoc[@"ride"] = newRide;
+        destLoc[@"ride"] = newRide;
+        
+        BOOL saved = [startLoc save] && [destLoc save];
+        if (!saved)
+        {
+            [newRide delete];
+            [startLoc delete];
+            [destLoc delete];
+            block([NSError errorWithDomain:@"couldn't save locations" code:0 userInfo:@{@"error":@"locations not saved"}]);
         }
         
         block(nil);
@@ -98,6 +111,7 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Start"];
     [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
     [query includeKey:@"ride"];
+    [query includeKey:@"ride.destination"];
     query.limit = 10;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
@@ -112,7 +126,7 @@
         //success
         NSMutableArray *rides = [NSMutableArray array];
         for (PFObject *start in objects)
-            [rides addObject:start[@"ride"]];
+            [rides addObject: [[Ride alloc] initWithRide:start[@"ride"]] ];
         
         block(rides, nil);
     }];
@@ -130,21 +144,22 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Destination"];
     [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
     [query includeKey:@"ride"];
+    [query includeKey:@"ride.start"];
     query.limit = 10;
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error)
      {
          if (error)
          {
-                 //error handling
+             //error handling
              block(nil, error);
              return;
          }
          
-             //success
+         //success
          NSMutableArray *rides = [NSMutableArray array];
-         for (PFObject *start in objects)
-             [rides addObject:start[@"ride"]];
+         for (PFObject *dest in objects)
+             [rides addObject: [[Ride alloc] initWithRide:dest[@"ride"]] ];
          
          block(rides, nil);
      }];
