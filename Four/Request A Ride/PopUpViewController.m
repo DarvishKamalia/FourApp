@@ -27,6 +27,11 @@
     self.priceLabel.text = [NSString stringWithFormat:@"%f", self.ride.price];
 }
 
+- (IBAction)dismiss:(UIButton *)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 - (IBAction)requestRide:(UIButton *)sender {
     
 }
