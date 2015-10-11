@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Ride.h"
 
 @interface PopUpViewController : UIViewController
 
 // Pass in the model
+@property (strong, nonatomic) Ride* ride;
 
 @end

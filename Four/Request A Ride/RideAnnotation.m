@@ -8,26 +8,23 @@
 
 #import "RideAnnotation.h"
 
-@implementation RideAnnotation
+@interface RideAnnotation ()
 
-- (instancetype) initWithCoordinate:(CLLocationCoordinate2D) cooridinate
-{
-    self = [super init];
-    if (self) {
-        self.coordinate = cooridinate;
-    }
-    return self;
-}
+@property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
+@property (nonatomic, readwrite) CLLocationCoordinate2D end;
+@property (strong, nonatomic, readwrite) Ride* ride;
+
+@end
+
+@implementation RideAnnotation
 
 - (instancetype) initWithRide:(Ride *)ride
 {
     self = [super init];
     if (self) {
         self.ride = ride;
-
-        CLLocation* start = self.ride.start;
-        self.coordinate = CLLocationCoordinate2DMake(start.latitude, start.longitude);
-        NSLog(@"%f", self.coordinate.latitude);
+        self.coordinate = ride.start.coordinate;
+        self.end = ride.destination.coordinate;
     }
     return self;
 }

@@ -7,6 +7,8 @@
 //
 
 #import "RequestARideViewController.h"
+#import "PopUpViewController.h"
+
 #import "RideAnnotation.h"
 #import "DataManager.h"
 
@@ -80,7 +82,25 @@
 -(void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
 {
     // Select annotation view
+    
+    if ([view isKindOfClass:[RideAnnotation class]]) {
+        
+        RideAnnotation* annotation = (RideAnnotation *)view;
+        Ride * ride = annotation.ride;
+        [self performSegueWithIdentifier:@"rideDetailsSegue" sender:ride];
+    }
 }
+
+#pragma mark - Navigation
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"rideDetailsSegue"]) {
+        PopUpViewController* vc = segue.destinationViewController;
+        vc.ride = sender;
+    }
+}
+
 
 #pragma mark - UISearch Bar Delegate
 
@@ -103,6 +123,9 @@
             }];
         }
     }];
+    
+    // Dismiss the search bar
+    [searchBar resignFirstResponder];
 }
 
 #pragma mark - Getter

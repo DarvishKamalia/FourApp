@@ -19,14 +19,12 @@
 
 @implementation PopUpViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    self.firstNameLabel.text = self.ride.driver.username;
+    self.priceLabel.text = [NSString stringWithFormat:@"%f", self.ride.price];
 }
 
 - (IBAction)requestRide:(UIButton *)sender {
