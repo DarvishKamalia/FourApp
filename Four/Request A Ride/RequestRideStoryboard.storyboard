@@ -36,6 +36,7 @@
                     <navigationItem key="navigationItem" id="QjA-bn-LwJ"/>
                     <connections>
                         <outlet property="mapView" destination="7s8-ZV-WWv" id="13a-2q-rih"/>
+                        <segue destination="Fha-Vh-tIF" kind="showDetail" identifier="rideDetailsSegue" id="6Jk-yQ-u6e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HHZ-VI-F32" userLabel="First Responder" sceneMemberID="firstResponder"/>

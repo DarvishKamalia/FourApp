@@ -13,9 +13,9 @@
 @interface RideAnnotation : NSObject <MKAnnotation>
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property (strong, nonatomic) Ride* ride;
+@property (nonatomic, readonly) CLLocationCoordinate2D end;
+@property (strong, nonatomic, readonly) Ride* ride;
 
 - (instancetype) initWithRide:(Ride *)object;
-- (instancetype) initWithCoordinate:(CLLocationCoordinate2D) cooridinate;
 
 @end
