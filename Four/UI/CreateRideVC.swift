@@ -53,7 +53,6 @@ class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDele
                             if (error == nil){
                                 self.presentViewController(createAlert("Success", message: "Ride Created!"), animated: true, completion: nil)
                                 self.dismissViewControllerAnimated(true, completion: nil)
-                                self.dismissViewControllerAnimated(true, completion: nil)
                                 
                             }
                             
@@ -61,8 +60,6 @@ class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDele
                                 
                                 
                             }
-                            
-                            
                             
                         })
                         
@@ -120,6 +117,8 @@ class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDele
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        topButton?.hidden = true
+        topButton?.hidden = true
         return false
     }
     
@@ -164,7 +163,7 @@ class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDele
                                     if let value = response.result.value {
                                         
                                         let json = JSON(value)
-                                        print (json)
+                                       // print (json)
                                         let estimate = json["prices"][0]["estimate"].string
                                         spinner.stopAnimating()
                                         self.uberEstimateTextLabel.text = estimate
@@ -191,9 +190,10 @@ class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDele
                     
                     print ("no start")
                     
+                    
                 }
             })
-        
+                    
         }
         
        
@@ -203,7 +203,7 @@ class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDele
         
         let replaced = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
         
-         if (textField == self.startAddressTextField && textField.text?.characters.count > 6) {
+         if (textField.text?.characters.count > 6) {
             
             let request = MKLocalSearchRequest()
             request.naturalLanguageQuery = replaced
@@ -225,25 +225,41 @@ class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDele
                        
                         if (msR.mapItems.count > 0) {
                             
-                            self.firstFieldItem = msR.mapItems[0]
+                            var toChange: UITextField = textField
                             
-                            self.topButton?.hidden = true
+                            var toChangeButton: UIButton! = nil
+                            var item: MKMapItem! = nil
                             
-                            if (self.topButton == nil) {
+                            if (toChange == self.startAddressTextField) {
+                                toChangeButton = self.topButton
+                                item = self.firstFieldItem
+                            }
+                            
+                            else {
                                 
-                                self.topButton = UIButton(frame: CGRect(x: textField.frame.origin.x, y: textField.frame.origin.y + textField.frame.height, width: textField.frame.width, height: 20))
-                            
+                                toChangeButton = self.bottomButton
+                                item = self.secondFieldItem
                             }
                             
-                            self.topButton!.setTitle(self.getStringFromPlacemark(self.firstFieldItem!.placemark), forState: .Normal)
+                            item = msR.mapItems[0]
                             
-                            if (self.getStringFromPlacemark(self.firstFieldItem!.placemark) == "") {
-                                return 
+                            toChangeButton?.hidden = true
+                            
+                            if (toChangeButton == nil) {
+                                
+                                toChangeButton = UIButton(frame: CGRect(x: textField.frame.origin.x, y: textField.frame.origin.y + textField.frame.height, width: textField.frame.width, height: 20))
+                                
                             }
-                            self.topButton?.backgroundColor = UIColor.blackColor()
-                            self.topButton!.addTarget(self, action: "suggestionSelected:", forControlEvents: .TouchUpInside)
-                            self.topButton?.hidden = false
-                            self.view.addSubview(self.topButton!)
+                            
+                          toChangeButton!.setTitle(self.getStringFromPlacemark(item!.placemark), forState: .Normal)
+                            
+                            if (self.getStringFromPlacemark(item.placemark) == "") {
+                                return
+                            }
+                            toChangeButton?.backgroundColor = UIColor.blackColor()
+                            toChangeButton!.addTarget(self, action: "suggestionSelected:", forControlEvents: .TouchUpInside)
+                            toChangeButton?.hidden = false
+                            self.view.addSubview(toChangeButton!)
                         }
                         
                     }
@@ -276,10 +292,19 @@ class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDele
         
         if (self.startAddressTextField.editing) {
             
-            self.startAddressTextField.text = self.getStringFromPlacemark((firstFieldItem?.placemark)!)
+            if let pm = firstFieldItem?.placemark{
+                
+                self.startAddressTextField.text = self.getStringFromPlacemark(pm)
+                print ("setting text")
+
+            }
+            
         }
         else {
-            self.destinationAddressTextField.text = self.getStringFromPlacemark((secondFieldItem?.placemark)!)
+            
+            if let pm = secondFieldItem?.placemark {
+                self.destinationAddressTextField.text = self.getStringFromPlacemark(pm)
+            }
         }
         
     }
