@@ -41,7 +41,9 @@
 
 #pragma mark - Events
 /**
- *
+ * Called when user hits return on a UITextField.
+ * If username field, bring password field into focus.
+ * If password field, attempt a login.
  */
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -64,7 +66,8 @@
 }
 
 /**
- *
+ * Called when user presses the login button.
+ * Check that both fields are not empty, and attempt a login.
  */
 - (IBAction)loginPressed:(id)sender
 {
@@ -86,7 +89,8 @@
 }
 
 /**
- *
+ * Called when user presses the sign up button.
+ * Check that both fields are not empty, and attempt a sign up.
  */
 - (IBAction)signupPressed:(id)sender
 {
@@ -109,7 +113,8 @@
 
 
 /**
- *
+ * Attempt a login with the given username and password.
+ * Display message on error, or present main app on login.
  */
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password
 {
@@ -128,11 +133,13 @@
          
          //segue to some view
          NSLog(@"%@", [PFUser currentUser]);
+         [self performSegueWithIdentifier:@"loginSegue" sender:nil];
      }];
 }
 
 /**
- *
+ * Attempt to cretae a new user from username and password.
+ * Display message on error, or present main app with new user.
  */
 - (void)signupWithUsername:(NSString *)username password:(NSString *)password
 {
@@ -150,6 +157,7 @@
         
         //segue to some view
         NSLog(@"%@", [PFUser currentUser]);
+        [self performSegueWithIdentifier:@"loginSegue" sender:nil];
     }];
 }
 
