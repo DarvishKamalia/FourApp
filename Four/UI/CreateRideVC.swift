@@ -8,40 +8,28 @@
 
 import UIKit
 import Alamofire
+import CoreLocation
+import SwiftyJSON
 
 let uberServerToken = "HsamnrlCAg6WYkv4t5oEcMalWaTlnUmFtGvT-BV6"
+let uberAPIURL = "https://sandbox-api.uber.com/v1/"
 
-class CreateRideViewController: UIViewController, UITextFieldDelegate {
+
+class CreateRideVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var startAddressTextField: UITextField!
     @IBOutlet weak var destinationAddressTextField: UITextField!
     @IBOutlet weak var uberEstimateTextLabel: UILabel!
     @IBOutlet weak var pricePerSeatTextField: UITextField!
     
-    @IBOutlet weak var createRideButton: UIButton!
-    
     
     @IBAction func createRideButtonPressed(sender: AnyObject) {
         
-        let url = "https://sandbox-api.uber.com/v1/products"
-        
-
-        
-        Alamofire.request(.GET, url, parameters: ["server_token" : uberServerToken, "latitude" : 0.0 , "longitude" : 0.0], headers: ["server_token" : uberServerToken]).responseJSON(completionHandler: {
-            
-            (response) in
-            
-            if let JSON = response.result.value {
-                
-                print (JSON)
-                
-            }
-            
-            
-        })
         
         
     }
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -58,6 +46,78 @@ class CreateRideViewController: UIViewController, UITextFieldDelegate {
             
             let startAddress = self.startAddressTextField.text!
             let destinationAddress = self.destinationAddressTextField.text!
+            
+            
+            let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge) as UIActivityIndicatorView
+            
+            spinner.frame = CGRect(x: 0, y: 0, width: uberEstimateTextLabel.frame.width, height: uberEstimateTextLabel.frame.height)
+            uberEstimateTextLabel.text = ""
+            uberEstimateTextLabel.addSubview(spinner)
+            spinner.startAnimating()
+            
+            let coder = CLGeocoder()
+            coder.geocodeAddressString(startAddressTextField.text!, completionHandler: { (startMarks, error) -> Void in
+                
+                if let startMark = startMarks?.first! {
+                    
+                    coder.geocodeAddressString(self.destinationAddressTextField.text!, completionHandler: { (endMarks, error) -> Void in
+                        
+                        if let endMark = endMarks?.first {
+                            
+                            
+                
+                            
+                            Alamofire.request(Method.GET, uberAPIURL + "estimates/price", parameters: [
+                            
+                                "server_token" : uberServerToken,
+                                "start_latitude" : startMark.location!.coordinate.latitude,
+                                "start_longitude" : startMark.location!.coordinate.longitude,
+                                "end_latitude" : endMark.location!.coordinate.latitude,
+                                "end_longitude" : endMark.location!.coordinate.longitude
+
+                                ]).responseJSON {
+                                    
+                                    (response) in
+                                    
+                                    if let value = response.result.value {
+                                        
+                                        let json = JSON(value)
+                                        print (json)
+                                        let estimate = json["prices"][0]["estimate"].string
+                                        spinner.stopAnimating()
+                                        self.uberEstimateTextLabel.text = estimate
+                                        
+                                        
+                                    }
+                                    
+                                    
+                                }
+                            
+                        }
+                        
+                        else {
+                            
+                            print ("no end")
+                        }
+                        
+                        
+                    })
+                    
+                }
+                
+                else {
+                    
+                    print ("no start")
+                    
+                }
+            })
+        
+            
+            
+            
+            
+            
+            
             
             
             
