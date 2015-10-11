@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *startLocationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *destinationLocationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeEstimateLabel;
+
 
 @property (strong, nonatomic) CLGeocoder* geocoder;
 
@@ -31,6 +33,7 @@
     self.startLocationLabel.text = @"";
     self.destinationLocationLabel.text = @"";
     
+    // Reverse start and end
     [self.geocoder reverseGeocodeLocation:self.ride.start completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
         
         if ([placemarks count] > 0) {
@@ -50,8 +53,11 @@
         }];
     }];
     
+    // Update UI
     self.firstNameLabel.text = self.ride.driver.username;
     self.priceLabel.text = [NSString stringWithFormat:@"%.2f", self.ride.price];
+    
+    
 }
 
 #pragma mark - IBActions
