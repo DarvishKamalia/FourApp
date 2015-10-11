@@ -71,19 +71,21 @@
     newRide[@"riders"] = [NSArray array];
     newRide[@"price"] = priceObj;
     newRide[@"seatsLeft"] = seatsObj;
+    newRide[@"completed"] = [NSNumber numberWithBool:NO];
     
     //attempt saving ride
-    [newRide saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
-    {
-        if (!error)
-        {
-            //error handler;
-            block(error);
-            return;
-        }
-        
-        block(nil);
-    }];
+    NSLog(@"%@", newRide.objectId);
+//    [newRide saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+//    {
+//        if (!error)
+//        {
+//            //error handler;
+//            block(error);
+//            return;
+//        }
+//        
+//        block(nil);
+//    }];
 }
 
 
