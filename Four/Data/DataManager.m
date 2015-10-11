@@ -148,7 +148,7 @@
     PFGeoPoint *gp = [PFGeoPoint geoPointWithLocation:location];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Start"];
-    [query whereKey:@"completed" equalTo:[NSNumber numberWithBool:NO]];
+    //[query whereKey:@"ride.completed" equalTo:[NSNumber numberWithBool:NO]];
     [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
     [query includeKey:@"ride"];
     [query includeKey:@"ride.driver"];
@@ -184,7 +184,7 @@
     PFGeoPoint *gp = [PFGeoPoint geoPointWithLocation:location];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Destination"];
-    [query whereKey:@"completed" equalTo:[NSNumber numberWithBool:NO]];
+    //[query whereKey:@"ride.completed" equalTo:[NSNumber numberWithBool:NO]];
     [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
     [query includeKey:@"ride"];
     [query includeKey:@"ride.driver"];
@@ -203,9 +203,11 @@
         }
         
         //success
+        NSLog(@"%@", objects);
         NSMutableArray *rides = [NSMutableArray array];
         for (PFObject *dest in objects)
         {
+            NSLog(@"%@", dest);
             [rides addObject: [[Ride alloc] initWithRide:dest[@"ride"]] ];
         }
         
