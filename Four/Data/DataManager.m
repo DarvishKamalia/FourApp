@@ -109,7 +109,10 @@
     PFObject *ride = rideObj.pfRide;
     int seatsLeft = rideObj.seatsLeft;
     if (seatsLeft == 0)
+    {
         block([NSError errorWithDomain:@"Request error" code:0 userInfo:@{@"error":@"Not enough seats"}]);
+        return;
+    }
     
     NSMutableArray *riders = [NSMutableArray arrayWithArray:ride[@"riders"]];
     [riders addObject:rider];
