@@ -88,6 +88,9 @@
         BOOL saved = [startLoc save] && [destLoc save];
         if (!saved)
         {
+            [newRide delete];
+            [startLoc delete];
+            [destLoc delete];
             block([NSError errorWithDomain:@"couldn't save locations" code:0 userInfo:@{@"error":@"locations not saved"}]);
         }
         
@@ -150,7 +153,7 @@
              return;
          }
          
-             //success
+         //success
          NSMutableArray *rides = [NSMutableArray array];
          for (PFObject *start in objects)
              [rides addObject:start[@"ride"]];
