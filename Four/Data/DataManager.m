@@ -151,6 +151,7 @@
     [query whereKey:@"completed" equalTo:[NSNumber numberWithBool:NO]];
     [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
     [query includeKey:@"ride"];
+    [query includeKey:@"ride.driver"];
     [query includeKey:@"ride.start"];
     [query includeKey:@"ride.destination"];
     query.limit = 10;
@@ -186,6 +187,7 @@
     [query whereKey:@"completed" equalTo:[NSNumber numberWithBool:NO]];
     [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
     [query includeKey:@"ride"];
+    [query includeKey:@"ride.driver"];
     [query includeKey:@"ride.start"];
     [query includeKey:@"ride.destination"];
     query.limit = 10;
