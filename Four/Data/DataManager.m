@@ -7,7 +7,6 @@
 //
 
 #import "DataManager.h"
-#import "Ride.h"
 
 
 @interface DataManager()
@@ -103,12 +102,53 @@
 /**
  *
  */
+- (void)createRideRequest:(Ride *)rideObj block:(void (^)(NSError *error))block
+{
+    PFUser *rider = [PFUser currentUser];
+
+    PFObject *ride = rideObj.pfRide;
+    int seatsLeft = rideObj.seatsLeft;
+    if (seatsLeft == 0)
+        block([NSError errorWithDomain:@"Request error" code:0 userInfo:@{@"error":@"Not enough seats"}]);
+    
+    NSMutableArray *riders = [NSMutableArray arrayWithArray:ride[@"riders"]];
+    [riders addObject:rider];
+    ride[@"riders"] = riders;
+    
+    [ride saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error)
+    {
+        if (error)
+        {
+            block(error);
+            return;
+        }
+        
+        NSMutableArray *taken = [NSMutableArray arrayWithArray:rider[@"taken"]];
+        [taken addObject:ride];
+        rider[@"taken"] = taken;
+        
+        NSError *saveError = nil;
+        if (![rider save:&saveError])
+        {
+            block(saveError);
+            return;
+        }
+        
+        block(nil);
+    }];
+}
+
+
+/**
+ *
+ */
 - (void)getRidesStartingNear:(CLLocation *)location within:(double)miles
                        block:(void (^)(NSArray *rides, NSError *error))block
 {
     PFGeoPoint *gp = [PFGeoPoint geoPointWithLocation:location];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Start"];
+    [query whereKey:@"completed" equalTo:[NSNumber numberWithBool:NO]];
     [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
     [query includeKey:@"ride"];
     [query includeKey:@"ride.start"];
@@ -143,6 +183,7 @@
     PFGeoPoint *gp = [PFGeoPoint geoPointWithLocation:location];
     
     PFQuery *query = [PFQuery queryWithClassName:@"Destination"];
+    [query whereKey:@"completed" equalTo:[NSNumber numberWithBool:NO]];
     [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
     [query includeKey:@"ride"];
     [query includeKey:@"ride.start"];
@@ -169,8 +210,6 @@
         block(rides, nil);
     }];
 }
-
-
 
 @end
 

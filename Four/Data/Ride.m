@@ -38,6 +38,8 @@
         self.departure = ride[@"departure"];
         self.price = [ride[@"price"] floatValue];
         self.completed = [ride[@"completed"] boolValue];
+        
+        self.seatsLeft = [ride[@"seatsLeft"] intValue];
     }
     return self;
 }

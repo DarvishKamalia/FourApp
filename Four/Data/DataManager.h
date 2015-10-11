@@ -8,7 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "Ride.h"
 
+
+/**
+ *
+ */
 @interface DataManager : NSObject
 
 + (instancetype)sharedManager;
@@ -19,6 +24,8 @@
                   departure:(NSDate *)departure
                       price:(float)price seats:(int)seats
                       block:(void (^)(NSError *error))block;
+
+- (void)createRideRequest:(Ride *)rideObj block:(void (^)(NSError *error))block;
 
 
 //getting rides near a location

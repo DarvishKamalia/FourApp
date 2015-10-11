@@ -25,7 +25,8 @@
 @property (nonatomic, strong) NSArray *const riders;
 @property (nonatomic, strong) NSDate  *const departure;
 @property (nonatomic) const float price;
-@property (nonatomic) const BOOL completed;
+@property (nonatomic) BOOL completed;
+@property (nonatomic) int seatsLeft;
 
 
 - (instancetype)initWithRide:(PFObject *)ride;
