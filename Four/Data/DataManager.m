@@ -109,7 +109,10 @@
     PFObject *ride = rideObj.pfRide;
     int seatsLeft = rideObj.seatsLeft;
     if (seatsLeft == 0)
+    {
         block([NSError errorWithDomain:@"Request error" code:0 userInfo:@{@"error":@"Not enough seats"}]);
+        return;
+    }
     
     NSMutableArray *riders = [NSMutableArray arrayWithArray:ride[@"riders"]];
     [riders addObject:rider];
@@ -147,8 +150,11 @@
 {
     PFGeoPoint *gp = [PFGeoPoint geoPointWithLocation:location];
     
+    PFQuery *notCompleted = [PFQuery queryWithClassName:@"Ride"];
+    [notCompleted whereKey:@"completed" equalTo:[NSNumber numberWithBool:NO]];
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Start"];
-    //[query whereKey:@"ride.completed" equalTo:[NSNumber numberWithBool:NO]];
+    [query whereKey:@"ride" matchesQuery:notCompleted];
     [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
     [query includeKey:@"ride"];
     [query includeKey:@"ride.driver"];
@@ -183,8 +189,11 @@
 {
     PFGeoPoint *gp = [PFGeoPoint geoPointWithLocation:location];
     
+    PFQuery *notCompleted = [PFQuery queryWithClassName:@"Ride"];
+    [notCompleted whereKey:@"completed" equalTo:[NSNumber numberWithBool:NO]];
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Destination"];
-    //[query whereKey:@"ride.completed" equalTo:[NSNumber numberWithBool:NO]];
+    [query whereKey:@"ride" matchesQuery:notCompleted];
     [query whereKey:@"geopoint" nearGeoPoint:gp withinMiles:miles];
     [query includeKey:@"ride"];
     [query includeKey:@"ride.driver"];
