@@ -24,10 +24,8 @@
 {
     if (self = [super init])
     {
-        PFGeoPoint *start = ride[@"start"];
-        PFGeoPoint *dest  = ride[@"destination"];
-        self.start = [[CLLocation alloc] initWithLatitude:start.latitude longitude:start.longitude];
-        self.destination = [[CLLocation alloc] initWithLatitude:dest.latitude longitude:dest.longitude];
+        self.start = ride[@"start"];
+        self.destination = ride[@"destination"];
         
         self.driver = ride[@"driver"];
         self.riders = ride[@"riders"];

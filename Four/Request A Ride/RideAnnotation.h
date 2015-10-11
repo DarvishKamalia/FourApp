@@ -8,13 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import "Ride.h"
 
 @interface RideAnnotation : NSObject <MKAnnotation>
 
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property (strong, nonatomic) PFObject* ride;
+@property (strong, nonatomic) Ride* ride;
 
-- (instancetype) initWithRide:(PFObject *)object;
+- (instancetype) initWithRide:(Ride *)object;
 - (instancetype) initWithCoordinate:(CLLocationCoordinate2D) cooridinate;
 
 @end

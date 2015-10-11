@@ -19,14 +19,15 @@
     return self;
 }
 
-- (instancetype) initWithRide:(PFObject *)object
+- (instancetype) initWithRide:(Ride *)ride
 {
     self = [super init];
     if (self) {
-        self.ride = object;
-        PFObject* startLocation = object[@"start"];
-        PFGeoPoint* geo = startLocation[@"geopoint"];
-        self.coordinate = CLLocationCoordinate2DMake(geo.latitude, geo.longitude);
+        self.ride = ride;
+
+        PFGeoPoint* start = self.ride.start[@"geopoint"];
+        self.coordinate = CLLocationCoordinate2DMake(start.latitude, start.longitude);
+        NSLog(@"%f", self.coordinate.latitude);
     }
     return self;
 }

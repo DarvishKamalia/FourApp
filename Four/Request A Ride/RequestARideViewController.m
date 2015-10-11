@@ -54,13 +54,15 @@
 }
 
 - (void) fetchInitialRides:(CLLocation *) location
-{
-    [[DataManager sharedManager] getRidesStartingNear:location within:4 block:^(NSArray *rides, NSError *error) {
-        for (PFObject* object in rides) {
-            RideAnnotation* ride = [[RideAnnotation alloc] initWithRide:object];
-            [self.initialAnnotations addObject:ride];
-        }
-        [self.mapView addAnnotations:self.initialAnnotations];
+{    
+    [[DataManager sharedManager] getRidesStartingNear:location within:5 block:^(NSArray *rides, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            for (Ride* object in rides) {
+                RideAnnotation* ride = [[RideAnnotation alloc] initWithRide:object];
+                [self.initialAnnotations addObject:ride];
+            }
+            [self.mapView addAnnotations:self.initialAnnotations];
+        });
     }];
 }
 
@@ -89,10 +91,16 @@
         
         // for each placemark, find the destination rides
         for (CLPlacemark* placemark in placemarks) {
-            CLLocationCoordinate2D coordinate = placemark.location.coordinate;
-            
-            
-            
+            CLLocation *location = placemark.location;
+            [[DataManager sharedManager] getRidesEndingNear:location within:5 block:^(NSArray *rides, NSError *error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.mapView removeAnnotations:self.initialAnnotations];
+                    for (Ride* object in rides) {
+                        RideAnnotation* ride = [[RideAnnotation alloc] initWithRide:object];
+                        [self.mapView addAnnotation:ride];
+                    }
+                });
+            }];
         }
     }];
 }
