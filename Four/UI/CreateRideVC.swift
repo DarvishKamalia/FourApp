@@ -10,28 +10,92 @@ import UIKit
 import Alamofire
 import CoreLocation
 import SwiftyJSON
+import MapKit
 
 let uberServerToken = "HsamnrlCAg6WYkv4t5oEcMalWaTlnUmFtGvT-BV6"
 let uberAPIURL = "https://sandbox-api.uber.com/v1/"
 
 
-class CreateRideVC: UIViewController, UITextFieldDelegate {
+class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var startAddressTextField: UITextField!
     @IBOutlet weak var destinationAddressTextField: UITextField!
     @IBOutlet weak var uberEstimateTextLabel: UILabel!
     @IBOutlet weak var pricePerSeatTextField: UITextField!
+    @IBOutlet weak var availableSeatsField: UITextField!
     
+    @IBOutlet weak var departureDatePicker: UIDatePicker!
+    
+    var locationManager = CLLocationManager()
+    var currentLocation: CLLocation? = nil
     
     @IBAction func createRideButtonPressed(sender: AnyObject) {
         
+        let coder = CLGeocoder()
+        coder.geocodeAddressString(startAddressTextField.text!, completionHandler: { (startMarks, error) -> Void in
+            
+            if let startMark = startMarks?.first! {
+                
+                coder.geocodeAddressString(self.destinationAddressTextField.text!, completionHandler: { (endMarks, error) -> Void in
+                    
+                    if let endMark = endMarks?.first {
+                    
+                        DataManager.sharedManager().createRideWithStart(startMark.location, destination: endMark.location, departure: self.departureDatePicker.date, price: Float((self.pricePerSeatTextField.text?.toDouble())!), seats: (self.availableSeatsField.text?.toInt32())!, block: { (error) -> Void in
+                            
+                            if (error == nil){
+                                self.presentViewController(createAlert("Success", message: "Ride Created Successfully"), animated: true, completion: nil)
+                            }
+                            
+                            else {
+                                
+                                print ("damn")
+                                
+                            }
+                            
+                            
+                            
+                        })
+                        
+                        
+                        
+                    }
+                        
+                    else {
+                        
+                        print ("no end")
+                    }
+                    
+                    
+                })
+                
+            }
+                
+            else {
+                
+                print ("no start")
+                
+            }
+
         
+        })
         
+    
     }
     
    
     override func viewDidLoad() {
         super.viewDidLoad()
+                
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        
+        
 
         // Do any additional setup after loading the view.
     }
@@ -63,9 +127,6 @@ class CreateRideVC: UIViewController, UITextFieldDelegate {
                     coder.geocodeAddressString(self.destinationAddressTextField.text!, completionHandler: { (endMarks, error) -> Void in
                         
                         if let endMark = endMarks?.first {
-                            
-                            
-                
                             
                             Alamofire.request(Method.GET, uberAPIURL + "estimates/price", parameters: [
                             
@@ -112,20 +173,41 @@ class CreateRideVC: UIViewController, UITextFieldDelegate {
                 }
             })
         
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
         }
+        
+       
     }
     
-    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        let replaced = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+        
+//         if (textField == self.startAddressTextField) {
+//            
+//            let request = MKLocalSearchRequest()
+//            request.naturalLanguageQuery = replaced
+//            request.region = MKCoordinateRegion(center: (currentLocation?.coordinate)!, span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
+//            
+//            MKLocalSearch().startWithCompletionHandler({ (searchResponse, searchError) -> Void in
+//                
+//                if (searchError != nil) {
+//                    
+//                    for response in searchResponse. as! [MKMapItem] {
+//                        
+//                        let res = response
+//                        
+//                        print (res.placemark.subThoroughfare! + " " + res.placemark.thoroughfare!)
+//                        
+//                    }
+//                    
+//                }
+//                
+//            })
+//            
+//        }
+        
+        return true
+    }
     
 
     /*
