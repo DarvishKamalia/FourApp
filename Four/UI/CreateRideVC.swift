@@ -10,12 +10,13 @@ import UIKit
 import Alamofire
 import CoreLocation
 import SwiftyJSON
+import MapKit
 
 let uberServerToken = "HsamnrlCAg6WYkv4t5oEcMalWaTlnUmFtGvT-BV6"
 let uberAPIURL = "https://sandbox-api.uber.com/v1/"
 
 
-class CreateRideVC: UIViewController, UITextFieldDelegate {
+class CreateRideVC: UIViewController, UITextFieldDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var startAddressTextField: UITextField!
     @IBOutlet weak var destinationAddressTextField: UITextField!
@@ -24,6 +25,9 @@ class CreateRideVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var availableSeatsField: UITextField!
     
     @IBOutlet weak var departureDatePicker: UIDatePicker!
+    
+    var locationManager = CLLocationManager()
+    var currentLocation: CLLocation? = nil
     
     @IBAction func createRideButtonPressed(sender: AnyObject) {
         
@@ -75,11 +79,23 @@ class CreateRideVC: UIViewController, UITextFieldDelegate {
         
         })
         
+    
     }
     
    
     override func viewDidLoad() {
         super.viewDidLoad()
+                
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
+        
+        
 
         // Do any additional setup after loading the view.
     }
@@ -158,9 +174,40 @@ class CreateRideVC: UIViewController, UITextFieldDelegate {
             })
         
         }
+        
+       
     }
     
-    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        let replaced = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+        
+//         if (textField == self.startAddressTextField) {
+//            
+//            let request = MKLocalSearchRequest()
+//            request.naturalLanguageQuery = replaced
+//            request.region = MKCoordinateRegion(center: (currentLocation?.coordinate)!, span: MKCoordinateSpan(latitudeDelta: 10, longitudeDelta: 10))
+//            
+//            MKLocalSearch().startWithCompletionHandler({ (searchResponse, searchError) -> Void in
+//                
+//                if (searchError != nil) {
+//                    
+//                    for response in searchResponse. as! [MKMapItem] {
+//                        
+//                        let res = response
+//                        
+//                        print (res.placemark.subThoroughfare! + " " + res.placemark.thoroughfare!)
+//                        
+//                    }
+//                    
+//                }
+//                
+//            })
+//            
+//        }
+        
+        return true
+    }
     
 
     /*
